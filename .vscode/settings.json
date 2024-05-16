@@ -1,3 +1,22 @@
 {
-  "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  "cSpell.words": [
+    "addcalorieintake",
+    "checklogin",
+    "CLOUDINARY",
+    "deletecalorieintake",
+    "editbutton",
+    "getcalorieintakebydate",
+    "getcalorieintakebylimit",
+    "getgoalcalorieintake",
+    "myimage",
+    "nkhsrrtnzwpnixoh",
+    "popupout",
+    "qtyingrams",
+    "quantitytype",
+    "reportpage",
+    "timebox",
+    "toastify",
+    "uploadimage"
+  ]
 }
