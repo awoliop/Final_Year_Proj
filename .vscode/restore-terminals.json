@@ -1,0 +1,43 @@
+{
+  "artificialDelayMilliseconds": 700,
+  "keepExistingTerminalsOpen": false,
+  "runOnStartup": true,
+  "terminals": [
+    {
+      "splitTerminals": [
+        {
+          "name": "F",
+          "commands": ["cd fitnessfreak"]
+        },
+        {
+          "name": "W",
+          "commands": ["cd fitnessfreak", "npm run dev"]
+        }
+      ]
+    },
+    {
+      "splitTerminals": [
+        {
+          "name": "A",
+          "commands": ["cd fitnessfreak_admin"]
+        },
+        {
+          "name": "w",
+          "commands": ["cd fitnessfreak_admin", "npm run dev"]
+        }
+      ]
+    },
+    {
+      "splitTerminals": [
+        {
+          "name": "B",
+          "commands": ["cd fitnessfreak_backend"]
+        },
+        {
+          "name": "W",
+          "commands": ["cd fitnessfreak_backend", "nodemon"]
+        }
+      ]
+    }
+  ]
+}

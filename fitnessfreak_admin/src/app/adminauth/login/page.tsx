@@ -58,7 +58,7 @@ const LoginPage = () => {
           setPassword(e.target.value);
         }}
       />
-      <button onClick={handleLogin}>Sign Up</button>
+      <button onClick={handleLogin}>Log In</button>
     </div>
   );
 };
