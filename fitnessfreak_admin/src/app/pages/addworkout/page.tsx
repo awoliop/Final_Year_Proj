@@ -71,10 +71,106 @@ const pages = () => {
       exercises: [...workout.exercises, exercise],
     });
   };
-  const deleteExerciseFromWorkOut = (index: number) => {};
-  const uploadImage = (image: File) => {};
-  const checklogin = async () => {};
+  const deleteExerciseFromWorkOut = (index: number) => {
+    setWorkout({
+      ...workout,
+      exercises: workout.exercises.filter((exercise, i) => i !== index),
+    });
+  };
+  const uploadImage = async (image: File) => {
+    const formData = new FormData();
+    formData.append("myimage", image);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_API}/image-upload/uploadimage`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+    if (response.ok) {
+      const data = await response.json();
+      console.log("image uploaded successfully!", data);
+      return data.imageurl;
+    } else {
+      console.error("Failed to upload Image!!");
+      return null;
+    }
+  };
+  const checklogin = async () => {
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_BACKEND_API + "/admin/checklogin",
+      {
+        method: "GET",
+        headers: {
+          "content-Type": "application/json",
+        },
+        credentials: "include",
+      }
+    );
+    if (response.ok) {
+      console.log("Admin is authenticated!!");
+    } else {
+      console.log("Admin is not Auhenticated!");
+      window.location.href = "/adminauth/login";
+    }
+  };
   const saveWorkout = async () => {
+    await checklogin();
+    if (
+      workout.name == "" ||
+      workout.description == "" ||
+      workout.durationInMinutes == 0 ||
+      workout.imageFile == null ||
+      workout.exercises.length == 0
+    ) {
+      toast.error("Please fill all the feilds!", {
+        position: "top-center",
+      });
+      return;
+    }
+    if (workout.imageFile) {
+      const imageURL = await uploadImage(workout.imageFile);
+
+      setWorkout({
+        ...workout,
+        imageURL,
+      });
+    }
+
+    {
+      for (let i = 0; i < workout.exercises.length; i++) {
+        const tempimg = workout.exercises[i].imageFile;
+        if (tempimg) {
+          const imageURL = await uploadImage(tempimg);
+          workout.exercises[i].imageURL = imageURL;
+        }
+      }
+    }
+
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_BACKEND_API + "/workoutplans/workouts",
+      {
+        method: "POST",
+        headers: {
+          "content-Type": "application/json",
+        },
+        body: JSON.stringify(workout),
+        credentials: "include",
+      }
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("workout created successfully", data);
+      toast.success("workout created successfully", {
+        position: "top-center",
+      });
+    } else {
+      console.error("workout creation Failed");
+      toast.error("workout creation Failed", {
+        position: "top-center",
+      });
+    }
     console.log(workout);
   };
 
@@ -194,6 +290,7 @@ const pages = () => {
             <p>{exercise.sets}</p>
             <p>{exercise.reps}</p>
             <img
+              className="imageDIsplay"
               src={
                 exercise.imageFile
                   ? URL.createObjectURL(exercise.imageFile)
@@ -201,6 +298,13 @@ const pages = () => {
               }
               alt="Image File"
             />
+            <button
+              onClick={() => {
+                deleteExerciseFromWorkOut(index);
+              }}
+            >
+              Delete
+            </button>
           </div>
         ))}
       </div>
