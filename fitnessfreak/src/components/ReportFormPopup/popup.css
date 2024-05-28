@@ -1,5 +1,5 @@
 .popupout {
-  position: fixed;
+  position: absolute;
   top: 0px;
   left: 0px;
   display: flex;
@@ -19,7 +19,7 @@
   width: 500px;
   max-height: 80%;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 6px;
   overflow: scroll;
   color: black;
 }
@@ -35,6 +35,8 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-height: 150px; /* Set the maximum height as needed */
+  overflow-y: auto;
 }
 
 .popupbox .items .item {
@@ -61,19 +63,19 @@
   transition: 0.3s;
 }
 
-.popupbox .close {
+.close {
   background-color: black;
   color: var(--col1);
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border: none;
   border-radius: 50%;
   font-size: 20px;
   cursor: pointer;
   line-height: 0;
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  position: relative;
+  top: -300px;
+  right: -560px;
   transition: 0.3s;
-  z-index: 1001;
+  z-index: 10001;
 }

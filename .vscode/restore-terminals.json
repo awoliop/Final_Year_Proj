@@ -38,6 +38,14 @@
           "commands": ["cd fitnessfreak_backend", "nodemon"]
         }
       ]
+    },
+    {
+      "splitTerminals": [
+        {
+          "name": "R",
+          "commands": []
+        }
+      ]
     }
   ]
 }

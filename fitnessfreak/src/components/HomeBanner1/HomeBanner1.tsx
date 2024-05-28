@@ -54,13 +54,13 @@ const HomeBanner1 = () => {
     // setData(temp);
     // console.log(temp);
 
-    fetch(process.env.NEXT_PUBLIC_BACKEND_API + "/report/getrepot", {
+    fetch(process.env.NEXT_PUBLIC_BACKEND_API + "/report/getreport", {
       method: "GET",
       credentials: "include",
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log(data.data);
         if (data.ok) {
           setData(data.data);
         } else {
@@ -77,18 +77,31 @@ const HomeBanner1 = () => {
     getData();
   }, []);
 
-  function simplifyFraction(numerator: number, denominator: number): [number, number] {
-    function gcd(a: number, b: number): number {
-      return b === 0 ? a : gcd(b, a % b);
-    }
-    const commonDivisor: number = gcd(numerator, denominator);
+  // function simplifyFraction(numerator: number, denominator: number): [number, number] {
+  //   function gcd(a: number, b: number): number {
+  //     // Ensure values are positive
+  //     a = Math.abs(a);
+  //     b = Math.abs(b);
 
-    // Simplify the fraction
-    const simplifiedNumerator: number = numerator / commonDivisor;
-    const simplifiedDenominator: number = denominator / commonDivisor;
+  //     while (b !== 0) {
+  //       const temp = b;
+  //       b = a % b;
+  //       a = temp;
+  //     }
 
-    return [simplifiedNumerator, simplifiedDenominator];
-  }
+  //     return a;
+  //   }
+
+  //   if (denominator === 0) {
+  //     throw new Error("Denominator cannot be zero.");
+  //   }
+
+  //   const commonDivisor: number = gcd(numerator, denominator);
+  //   const simplifiedNumerator: number = numerator / commonDivisor;
+  //   const simplifiedDenominator: number = denominator / commonDivisor;
+
+  //   return [simplifiedNumerator, simplifiedDenominator];
+  // }
 
   return (
     <div className="meters">
@@ -100,13 +113,13 @@ const HomeBanner1 = () => {
                 <div className="card-header-box">
                   <div className="card-header-box-name">{item.name}</div>
                   <div className="card-header-box-value">
-                    {item.value} {item.unit}
+                    {parseInt(item.value)} {item.unit}
                   </div>
                 </div>
                 <div className="card-header-box">
                   <div className="card-header-box-name">Target</div>
                   <div className="card-header-box-value">
-                    {item.goal} {item.goalUnit}
+                    {parseInt(item.goal)} {item.unit}
                   </div>
                 </div>
               </div>
@@ -118,11 +131,11 @@ const HomeBanner1 = () => {
                 size="lg"
                 value={(item.value / item.goal) * 100}
               >
-                <span className="textincircle">
-                  {simplifyFraction(item.value, item.goal)[0] +
-                    " / " +
-                    simplifyFraction(item.value, item.goal)[1]}
-                </span>
+                <div className="textincircle">
+                  <span>{parseInt(item.value)}</span>
+                  <span className="hrline"></span>
+                  <span className="textincircle">{parseInt(item.goal)}</span>
+                </div>
               </CircularProgress>
 
               <button

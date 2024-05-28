@@ -3,10 +3,14 @@ import React, { useState, useEffect } from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
 import "./ReportPage.css";
 import { AiFillEdit } from "react-icons/ai";
-import CalorieIntake from "@/components/ReportFormPopup/CalorieIntake/CalorieIntake";
+import showCalorieIntakePopup from "@/components/ReportFormPopup/CalorieIntake/CalorieIntakePopup";
+import { usePathname } from "next/navigation";
+import CalorieIntakePopup from "@/components/ReportFormPopup/CalorieIntake/CalorieIntakePopup";
 
 const page = () => {
   const color = "#ffc20e";
+  const pathname = usePathname();
+  console.log(pathname);
 
   const chartsParams = {
     height: 300,
@@ -122,72 +126,7 @@ const page = () => {
           />
         )}
       </div>
-      <div className="s2">
-        {data && (
-          <LineChart
-            xAxis={[
-              {
-                id: "Day",
-                data: data.xAxis.data,
-                scaleType: data.xAxis.scaleType,
-                label: data.xAxis.label,
-              },
-            ]}
-            series={[
-              {
-                data: data.data,
-                label: data.title,
-                color: data.color,
-              },
-            ]}
-            {...chartsParams}
-          />
-        )}
-      </div>
-      <div className="s3">
-        {data && (
-          <LineChart
-            xAxis={[
-              {
-                id: "Day",
-                data: data.xAxis.data,
-                scaleType: data.xAxis.scaleType,
-                label: data.xAxis.label,
-              },
-            ]}
-            series={[
-              {
-                data: data.data,
-                label: data.title,
-                color: data.color,
-              },
-            ]}
-            {...chartsParams}
-          />
-        )}
-      </div>
-      <div className="s4">
-        {data && (
-          <LineChart
-            xAxis={[
-              {
-                id: "Day",
-                data: data.xAxis.data,
-                scaleType: data.xAxis.scaleType,
-                label: data.xAxis.label,
-              },
-            ]}
-            series={[
-              {
-                data: data.data,
-                label: data.title,
-                color: data.color,
-              },
-            ]}
-            {...chartsParams}
-          />
-        )}
-      </div>
+
       <button
         className="editbutton"
         onClick={() => {
@@ -198,7 +137,7 @@ const page = () => {
       </button>
 
       {showCalorieIntakePopup && (
-        <CalorieIntake setShowCalorieIntakePopup={setShowCalorieIntakePopup} />
+        <CalorieIntakePopup setShowCalorieIntakePopup={setShowCalorieIntakePopup} />
       )}
     </div>
   );

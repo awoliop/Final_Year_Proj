@@ -45,6 +45,9 @@
 .meters .card:nth-child(6) {
   background: linear-gradient(90deg, #ffff7c 0%, #ffb47e 100%);
 }
+.meters .card:nth-child(7) {
+  background: linear-gradient(90deg, #ffe38d 0%, #ffb784 100%);
+}
 
 .meters .card-header {
   display: flex;
@@ -68,6 +71,7 @@
 .meters .card-header-box-name {
   font-size: 12px;
   font-weight: bold;
+  color: black;
 }
 
 .meters .card-header-box-value {
@@ -97,4 +101,17 @@
 .meters .textincircle {
   color: #333;
   font-weight: 700;
+  font-size: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.meters .textincircle .hrline {
+  width: 100%;
+  height: 1px;
+  background-color: black;
+  margin: 1px 0px;
 }

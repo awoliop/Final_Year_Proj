@@ -98,11 +98,11 @@ router.get("/getreport", authTokenHandler, async (req, res) => {
   let BMR = 0;
   let gender = user.gender;
   if (gender == "male") {
-    BMR = 88.362 + 13.397 * weightInKg + 4.799 * heightInCm - 5.677 * age;
+    BMR = Math.round(88.362 + 13.397 * weightInKg + 4.799 * heightInCm - 5.677 * age);
   } else if (gender == "female") {
-    BMR = 447.593 + 9.247 * weightInKg + 3.098 * heightInCm - 4.33 * age;
+    BMR = Math.round(447.593 + 9.247 * weightInKg + 3.098 * heightInCm - 4.33 * age);
   } else {
-    BMR = 447.593 + 9.247 * weightInKg + 3.098 * heightInCm - 4.33 * age;
+    BMR = Math.round(447.593 + 9.247 * weightInKg + 3.098 * heightInCm - 4.33 * age);
   }
   if (user.goal == "weightLoss") {
     maxCalorieIntake = BMR - 500;
@@ -113,7 +113,7 @@ router.get("/getreport", authTokenHandler, async (req, res) => {
   }
 
   // get goal weight
-  let goalWeight = 22 * (user.height[user.height.length - 1].height / 100) ** 2;
+  let goalWeight = Math.round(22 * (user.height[user.height.length - 1].height / 100) ** 2);
 
   // get goal workout
   let goalWorkout = 0;
@@ -178,12 +178,12 @@ router.get("/getreport", authTokenHandler, async (req, res) => {
       goal: goalWeight,
       unit: "kg",
     },
-    {
-      name: "Height",
-      value: height,
-      goal: "",
-      unit: "cm",
-    },
+    // {
+    //   name: "Height",
+    //   value: height,
+    //   goal: "",
+    //   unit: "cm",
+    // },
   ];
 
   res.json(createResponse(true, "Report", tempResponse));
