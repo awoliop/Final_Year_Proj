@@ -6,6 +6,8 @@ import { AiFillEdit } from "react-icons/ai";
 import showCalorieIntakePopup from "@/components/ReportFormPopup/CalorieIntake/CalorieIntakePopup";
 import { usePathname } from "next/navigation";
 import CalorieIntakePopup from "@/components/ReportFormPopup/CalorieIntake/CalorieIntakePopup";
+import { toast } from "react-toastify";
+import { title } from "process";
 
 const page = () => {
   const color = "#ffc20e";
@@ -19,87 +21,56 @@ const page = () => {
   const [data, setData] = useState(null);
 
   const getDataForS1 = async () => {
-    let temp = [
-      {
-        date: "Thu Sep 28 2023 20:30:30 GMT+0530 (India Standard Time)",
-        value: 2000,
-        unit: "kcal",
-      },
-      {
-        date: "Wed Sep 27 2023 20:30:30 GMT+0530 (India Standard Time)",
-        value: 2500,
-        unit: "kcal",
-      },
-      {
-        date: "Tue Sep 26 2023 20:30:30 GMT+0530 (India Standard Time)",
-        value: 2700,
-        unit: "kcal",
-      },
-      {
-        date: "Mon Sep 25 2023 20:30:30 GMT+0530 (India Standard Time)",
-        value: 3000,
-        unit: "kcal",
-      },
-      {
-        date: "Sun Sep 24 2023 20:30:30 GMT+0530 (India Standard Time)",
-        value: 2000,
-        unit: "kcal",
-      },
-      {
-        date: "Sat Sep 23 2023 20:30:30 GMT+0530 (India Standard Time)",
-        value: 2300,
-        unit: "kcal",
-      },
-      {
-        date: "Fri Sep 22 2023 20:30:30 GMT+0530 (India Standard Time)",
-        value: 2500,
-        unit: "kcal",
-      },
-      {
-        date: "Thu Sep 21 2023 20:30:30 GMT+0530 (India Standard Time)",
-        value: 2700,
-        unit: "kcal",
-      },
-    ];
+    if (pathname === "/report/Calorie%20Intake") {
+      try {
+        const response = await fetch(
+          process.env.NEXT_PUBLIC_BACKEND_API + "/calorieintake/getcalorieintakebylimit",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify({
+              limit: 10,
+            }),
+          }
+        );
 
-    let dataForLineChart = temp.map((item) => {
-      let val = item.value;
-      return val;
-    });
+        const result = await response.json();
 
-    let dataForXAxis = temp.map((item) => {
-      let val = new Date(item.date);
-      return val.getDate();
-    });
+        if (result.ok) {
+          const temp = result.data.map((item) => ({
+            date: item.date,
+            value: item.calorieIntake,
+            unit: "kcal",
+          }));
 
-    console.log({
-      data: dataForLineChart,
-      title: "1 Day Calorie Intake",
-      color: color,
-      xAxis: {
-        data: dataForXAxis,
-        label: "Last 10 Days",
-        scaleType: "time",
-      },
-    });
+          const dataForLineChart = temp.map((item) => item.value);
+          const dataForXAxis = temp.map((item) => new Date(item.date).getDate());
 
-    console.log(data);
-
-    setData({
-      data: dataForLineChart,
-      title: "1 Day Calorie Intake",
-      color: color,
-      xAxis: {
-        data: dataForXAxis,
-        label: "Last 10 Days",
-        scaleType: "time",
-      },
-    });
+          setData({
+            data: dataForLineChart,
+            title: "2 Day Calorie Intake",
+            color: color,
+            xAxis: {
+              data: dataForXAxis,
+              label: "Last 10 Days",
+              scaleType: "time",
+            },
+          });
+        } else {
+          setData([]);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   useEffect(() => {
     getDataForS1();
-  }, []); // Empty dependency array means this effect runs once on component mount
+  }, []);
 
   const [showCalorieIntakePopup, setShowCalorieIntakePopup] = useState(false);
   return (

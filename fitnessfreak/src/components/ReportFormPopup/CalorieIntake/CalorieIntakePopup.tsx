@@ -96,7 +96,31 @@ const CalorieIntakePopup: React.FC<CaloriIntakePopupProps> = ({ setShowCalorieIn
   };
 
   const deleteCaloriIntake = async (item: any) => {
-    // Delete logic here
+    try {
+      fetch(process.env.NEXT_PUBLIC_BACKEND_API + "/calorieintake/deletecalorieintake", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          item: item.item,
+          date: item.date,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.ok) {
+            toast.success("Calorie intake item deleted successfully");
+            getCalorieIntake();
+          } else {
+            toast.error("Error  in deleting the calorie Intake");
+          }
+        });
+    } catch (error) {
+      toast.error("Error in deleting Calorie intake");
+      console.error(error);
+    }
   };
 
   const selectedDay = (val: Dayjs | null) => {
