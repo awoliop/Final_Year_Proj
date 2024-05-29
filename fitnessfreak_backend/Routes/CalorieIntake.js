@@ -127,8 +127,8 @@ router.delete("/deletecalorieintake", authTokenHandler, async (req, res) => {
   const userId = req.userId;
   const user = await User.findById({ _id: userId });
 
-  user.calorieIntake = user.calorieIntake.filter((item) => {
-    return item.item != item && item.date != date;
+  user.calorieIntake = user.calorieIntake.filter((entry) => {
+    return entry.date.toString() !== new Date(date).toString();
   });
   await user.save();
   res.json(createResponse(true, "Calorie intake deleted successfully"));
