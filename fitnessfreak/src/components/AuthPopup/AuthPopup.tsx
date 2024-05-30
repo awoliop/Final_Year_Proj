@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AuthPopup.css";
 import Image from "next/image";
 import logo from "@/assets/logo.png";
@@ -143,6 +143,7 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup }) => {
         console.log(err);
       });
   };
+
   const handleSignup = () => {
     // console.log(process.env.NEXT_PUBLIC_BACKEND_API);
 
