@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { IoIosBody } from "react-icons/io";
 import AuthPopup from "../AuthPopup/AuthPopup";
+import { ToastContainer, toast } from "react-toastify";
 
 const NavBar = () => {
   const [isloggedin, setIsloggedin] = React.useState<boolean>(false);
@@ -23,6 +24,30 @@ const NavBar = () => {
           setIsloggedin(true);
         } else {
           setIsloggedin(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleLogout = () => {
+    fetch(process.env.NEXT_PUBLIC_BACKEND_API + "/auth/logout", {
+      method: "POST",
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.ok) {
+          // Clear local session or token
+          localStorage.removeItem("authToken");
+          localStorage.removeItem("refreshToken");
+
+          // Redirect the user to the login page or homepage
+          window.location.href = "/"; // Replace '/login' with the desired redirect URL
+        } else {
+          toast.error(data.message);
         }
       })
       .catch((err) => {
@@ -48,7 +73,14 @@ const NavBar = () => {
         <IoIosBody />
       </Link>
       {isloggedin ? (
-        <button>LogOut</button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            handleLogout();
+          }}
+        >
+          LogOut
+        </button>
       ) : (
         <button
           onClick={() => {

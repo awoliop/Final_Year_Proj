@@ -111,6 +111,17 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
+router.post("/logout", async (req, res, next) => {
+  try {
+    // Clear authentication cookies
+    res.clearCookie("authToken");
+    res.clearCookie("refreshToken");
+    res.status(200).json(createResponse(true, "Logout successful"));
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.post("/sendotp", async (req, res) => {
   try {
     const { email } = req.body;

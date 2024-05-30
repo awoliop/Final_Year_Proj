@@ -78,7 +78,10 @@ const HomeBanner2 = () => {
   }, []);
   return (
     <div>
-      <h1 className="mainhead1">Workouts</h1>
+      <h1 className="fira-sans-condensed-extrabold-italic">
+        <span className="first-letter">F</span>itness & <span className="second-letter">N</span>
+        utrition
+      </h1>
       <Swiper
         slidesPerView={1}
         spaceBetween={10}
@@ -91,11 +94,11 @@ const HomeBanner2 = () => {
             spaceBetween: 20,
           },
           768: {
-            slidesPerView: 4,
+            slidesPerView: 3,
             spaceBetween: 40,
           },
           1024: {
-            slidesPerView: 5,
+            slidesPerView: 4,
             spaceBetween: 50,
           },
         }}

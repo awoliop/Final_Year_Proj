@@ -21,20 +21,22 @@ import { parse } from "path";
 import { colors } from "@mui/material";
 const Nutrition = () => {
   const myref = useRef(null);
-  const [have, sethave] = useState([
-    {
-      name: "",
-      calories: null,
-      serving_size_g: null,
-      fat_total_g: null,
-      fat_saturated_g: null,
-      protein_g: null,
-      cholesterol_mg: null,
-      carbohydrates_total_g: null,
-      fiber_g: null,
-      sugar_g: null,
-    },
-  ]);
+  const [have, sethave] = useState(
+    JSON.parse(localStorage.getItem("had")) || [
+      {
+        name: "",
+        calories: null,
+        serving_size_g: null,
+        fat_total_g: null,
+        fat_saturated_g: null,
+        protein_g: null,
+        cholesterol_mg: null,
+        carbohydrates_total_g: null,
+        fiber_g: null,
+        sugar_g: null,
+      },
+    ]
+  );
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -82,6 +84,12 @@ const Nutrition = () => {
       // data[0].name = data[0].name.toUpperCase();
       console.log(data.name);
       sethave([...data, ...have]);
+
+      if (have.length != 0) {
+        localStorage.setItem("had", JSON.stringify(have));
+      }
+
+      console.log(have);
     } catch (error) {
       console.log("here is the error" + error);
     }
