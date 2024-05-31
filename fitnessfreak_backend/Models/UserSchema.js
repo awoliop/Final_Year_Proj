@@ -138,6 +138,7 @@ const userSchema = new mongoose.Schema(
         },
       },
     ],
+    Nutrition: [],
   },
   { timestamps: true }
 );

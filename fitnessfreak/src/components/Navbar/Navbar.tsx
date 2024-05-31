@@ -66,12 +66,12 @@ const NavBar = () => {
       </Link>
 
       <Link href="/">Home</Link>
-      <Link href="/about">About</Link>
       <Link href="/nutrition">Nutrition</Link>
       <Link href="/ai-assistance">Assist</Link>
-      <Link href="/profile">
+      <Link href="/about">About</Link>
+      {/* <Link href="/profile">
         <IoIosBody />
-      </Link>
+      </Link> */}
       {isloggedin ? (
         <button
           onClick={(e) => {
