@@ -35,7 +35,7 @@ const Navbar = () => {
     checkAdminAuthenticated();
   }, []);
   return (
-    <div className="navbar">
+    <div className="navbar-admin">
       <Image src={logo} alt="logo" width={100} className="logo" />
       <div className="admnlinks">
         {isAdminAuthenticated ? (

@@ -1,4 +1,4 @@
-.navbar {
+.navbar-admin {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -7,18 +7,18 @@
   font-family: "Roboto", sans-serif;
   font-weight: lighter;
 }
-.navbar .logo {
+.navbar-admin .logo {
   margin: 10px;
 }
 
-.navbar a {
+.navbar-admin a {
   text-decoration: none;
   color: #ffffff;
   font-size: 1.2rem;
   margin: 0 10px;
 }
 
-.navbar a:hover {
+.navbar-admin a:hover {
   background-color: #ffffff;
   color: #000000;
   padding: 5px;

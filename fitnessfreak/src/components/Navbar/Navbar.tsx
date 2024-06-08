@@ -67,7 +67,7 @@ const NavBar = () => {
       <Link href="/nutrition">Nutrition</Link>
       <Link href="/ai-assistance">Assist</Link>
       <Link href="/about">About</Link>
-      <Link href="/workout">workouts</Link>
+      <Link href="/workouts">workouts</Link>
       {/* <Link href="/profile">
         <IoIosBody />
       </Link> */}
