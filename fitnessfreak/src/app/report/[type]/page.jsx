@@ -15,8 +15,8 @@ const page = () => {
   console.log(pathname);
 
   const chartsParams = {
-    height: 300,
-    width: 500,
+    height: 500,
+    width: 700,
   };
   const [data, setData] = useState(null);
 

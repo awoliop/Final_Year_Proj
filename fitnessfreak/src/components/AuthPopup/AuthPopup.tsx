@@ -296,7 +296,6 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup }) => {
               >
                 <Option value="male">Male</Option>
                 <Option value="female">Female</Option>
-                <Option value="other">Other</Option>
               </Select>
 
               <label htmlFor="">Height</label>

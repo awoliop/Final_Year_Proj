@@ -61,14 +61,13 @@ const NavBar = () => {
 
   return (
     <nav>
-      <Link href="/">
-        <Image src={logo} alt="logo" />
-      </Link>
+      <Link href="/">{/* <Image src={logo} alt="logo" /> */}</Link>
 
       <Link href="/">Home</Link>
       <Link href="/nutrition">Nutrition</Link>
       <Link href="/ai-assistance">Assist</Link>
       <Link href="/about">About</Link>
+      <Link href="/workout">workouts</Link>
       {/* <Link href="/profile">
         <IoIosBody />
       </Link> */}

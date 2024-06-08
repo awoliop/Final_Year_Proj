@@ -3,6 +3,7 @@ import React from "react";
 import "./addworkout.css";
 import { toast } from "react-toastify";
 import { HtmlContext } from "next/dist/server/future/route-modules/app-page/vendored/contexts/entrypoints";
+import { error } from "console";
 
 interface Workout {
   name: string;
@@ -111,6 +112,7 @@ const pages = () => {
       console.log("Admin is authenticated!!");
     } else {
       console.log("Admin is not Auhenticated!");
+      toast.error("You are not authenticated!");
       window.location.href = "/adminauth/login";
     }
   };

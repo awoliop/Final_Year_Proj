@@ -96,6 +96,7 @@ router.post("/getcalorieintakebydate", authTokenHandler, async (req, res) => {
   user.calorieIntake = filterEntriesByDate(user.calorieIntake, new Date(date));
   res.json(createResponse(true, "Calorie intake for the date", user.calorieIntake));
 });
+
 router.post("/getcalorieintakebylimit", authTokenHandler, async (req, res) => {
   const { limit } = req.body;
   const userId = req.userId;
@@ -118,6 +119,7 @@ router.post("/getcalorieintakebylimit", authTokenHandler, async (req, res) => {
     );
   }
 });
+
 router.delete("/deletecalorieintake", authTokenHandler, async (req, res) => {
   const { item, date } = req.body;
   if (!item || !date) {
@@ -133,6 +135,7 @@ router.delete("/deletecalorieintake", authTokenHandler, async (req, res) => {
   await user.save();
   res.json(createResponse(true, "Calorie intake deleted successfully"));
 });
+
 router.get("/getgoalcalorieintake", authTokenHandler, async (req, res) => {
   const userId = req.userId;
   const user = await User.findById({ _id: userId });
