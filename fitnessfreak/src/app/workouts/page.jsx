@@ -86,7 +86,7 @@ const Workout = () => {
         {isactive == "levels" ? (
           <div>
             <div className="inner-nav">
-              <nav>
+              <nav className="smallest-nav">
                 <span
                   className={level == "beginner" ? "inneractive" : "innerpassive"}
                   onClick={() => {
@@ -190,7 +190,7 @@ const Workout = () => {
         ) : isactive == "category" ? (
           <div>
             <div className="inner-nav">
-              <nav>
+              <nav className="smallest-nav">
                 <span
                   className={catagory == "strength" ? "inneractive" : "innerpassive"}
                   onClick={() => {
@@ -422,7 +422,7 @@ const Workout = () => {
         ) : isactive == "Force" ? (
           <div>
             <div className="inner-nav">
-              <nav>
+              <nav className="smallest-nav">
                 <span
                   className={force == "pull" ? "inneractive" : "innerpassive"}
                   onClick={() => {
@@ -526,7 +526,7 @@ const Workout = () => {
         ) : isactive == "Mechanics" ? (
           <div>
             <div className="inner-nav">
-              <nav>
+              <nav className="smallest-nav">
                 <span
                   className={mechanics == "compound" ? "inneractive" : "innerpassive"}
                   onClick={() => {
@@ -622,7 +622,7 @@ const Workout = () => {
         ) : (
           <div>
             <div className="inner-nav">
-              <nav>
+              <nav className="smallest-nav">
                 <span
                   className={equipment == "dumbbell" ? "inneractive" : "innerpassive"}
                   onClick={() => {
