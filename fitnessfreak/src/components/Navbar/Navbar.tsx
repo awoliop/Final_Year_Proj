@@ -68,6 +68,7 @@ const NavBar = () => {
       <Link href="/ai-assistance">Assist</Link>
       <Link href="/about">About</Link>
       <Link href="/workouts">workouts</Link>
+      <Link href="/chat">chat</Link>
       {/* <Link href="/profile">
         <IoIosBody />
       </Link> */}

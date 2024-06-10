@@ -119,6 +119,9 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup }) => {
   const handleLogin = () => {
     console.log(loginformData);
 
+    localStorage.setItem("usernames112", loginformData.email.split("@")[0]);
+    console.log(localStorage.getItem("usernames112"));
+
     fetch(process.env.NEXT_PUBLIC_BACKEND_API + "/auth/login", {
       method: "POST",
       headers: {

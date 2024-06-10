@@ -111,6 +111,25 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
+router.post("/extract-email-part", authTokenHandler, async (req, res, next) => {
+  try {
+    console.log("hi");
+    const user = req.user; // Assuming authTokenHandler adds the user object to req
+    console.log(user);
+
+    if (!user || !user.email) {
+      return res.status(400).json(createResponse(false, "User is not authenticated"));
+    }
+
+    const emailPart = user.email.split("@")[0];
+    console.log(emailPart);
+
+    res.status(200).json(createResponse(true, "Email part extracted successfully", { emailPart }));
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.post("/logout", async (req, res, next) => {
   try {
     // Clear authentication cookies
