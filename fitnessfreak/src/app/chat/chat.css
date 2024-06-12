@@ -128,3 +128,80 @@ body {
 .ce-chat-feed-column {
   overflow-y: hidden !important;
 }
+
+.ce-chat-list {
+  background-color: #020d1d !important;
+}
+
+.ce-chat-feed {
+  background-color: #020d1d !important;
+}
+
+.ce-chat-avatars {
+  background-color: #020d1d !important;
+}
+
+.ce-dropdown-label {
+  background-color: #020d1d !important;
+}
+.ce-chat-settings-title {
+  background-color: #020d1d !important;
+}
+
+.ce-chat-settings {
+  background-color: #020d1d !important;
+}
+
+.ce-message-date-text {
+  background-color: #020d1d !important;
+}
+
+#msg-textarea {
+  height: 50px !important;
+  text-indent: 25px !important;
+  /* padding-top: 10px !important; */
+  font-size: 20px !important;
+  width: 80% !important;
+  border-radius: 12px !important;
+}
+
+#ce-send-message-button {
+  padding: 10px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  background-color: orange !important;
+  color: black !important;
+  font-size: 17px !important;
+  position: absolute;
+  top: -11px !important;
+  left: 45px !important;
+}
+
+.ce-attachment-icon {
+  font-size: 24px !important;
+  border-radius: 5px !important;
+  background-color: orange !important;
+  border: none !important;
+  position: absolute;
+  top: -5px;
+}
+
+.ce-my-message-body {
+  background-color: #44a8d3 !important;
+  color: black !important;
+}
+
+.ce-their-message-body {
+  background-color: orange !important;
+  color: black !important;
+}
+.ce-chat-card {
+  background-color: #44a8d3 !important;
+  margin-bottom: 15px !important;
+}
+
+.ce-default-button {
+  background-color: orange !important;
+  border: none !important;
+  font-weight: bolder !important;
+}

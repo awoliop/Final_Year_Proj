@@ -66,9 +66,10 @@ const NavBar = () => {
       <Link href="/">Home</Link>
       <Link href="/nutrition">Nutrition</Link>
       <Link href="/ai-assistance">Assist</Link>
-      <Link href="/about">About</Link>
-      <Link href="/workouts">workouts</Link>
-      <Link href="/chat">chat</Link>
+      <Link href="/workouts">Workouts</Link>
+      <Link href="/Routines">Routines</Link>
+      <Link href="/chat">Community</Link>
+      <Link href="/about">About Us</Link>
       {/* <Link href="/profile">
         <IoIosBody />
       </Link> */}
