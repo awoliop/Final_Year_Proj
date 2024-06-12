@@ -3,8 +3,9 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   margin: 0px;
+  position: fixed !important;
 }
 
 .background {
@@ -150,6 +151,8 @@ body {
 
 .ce-chat-settings {
   background-color: #020d1d !important;
+  /* position: fixed !important; */
+  /* top: 130px !important; */
 }
 
 .ce-message-date-text {
@@ -204,4 +207,10 @@ body {
   background-color: orange !important;
   border: none !important;
   font-weight: bolder !important;
+}
+
+.ce-message-form {
+  position: fixed !important;
+  width: 50% !important;
+  bottom: -10px !important ;
 }
