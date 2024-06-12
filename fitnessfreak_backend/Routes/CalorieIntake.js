@@ -83,6 +83,7 @@ router.post("/addcalorieintake", authTokenHandler, async (req, res) => {
     }
   );
 });
+
 router.post("/getcalorieintakebydate", authTokenHandler, async (req, res) => {
   const { date } = req.body;
   const userId = req.userId;
