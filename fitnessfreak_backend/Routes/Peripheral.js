@@ -15,7 +15,8 @@ router.post("/authenticate", async (req, res, next) => {
       },
       {
         headers: {
-          "private-key": "f7d2720d-3368-4f5b-98c7-fbb3ccd10da9",
+          // Private Key
+          "private-key": "a7ee0de4-6dfd-4211-86d5-ead9d31096bf",
         },
       }
     );

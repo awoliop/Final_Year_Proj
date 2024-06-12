@@ -1,13 +1,11 @@
-import {
-  MultiChatSocket,
-  MultiChatWindow,
-  useMultiChatLogic,
-} from "react-chat-engine-advanced";
+import { MultiChatSocket, MultiChatWindow, useMultiChatLogic } from "react-chat-engine-advanced";
 import React from "react";
 
 const chatsPage = (props) => {
   const chatprops = useMultiChatLogic(
-    "01c1763d-64b7-4d59-8cda-5a07ec370f8f",
+    // "01c1763d-64b7-4d59-8cda-5a07ec370f8f",
+    // Project ID
+    "a9395038-c728-422e-b3bd-ddb3847d8a11",
     props.user.username,
     props.user.secret
   );

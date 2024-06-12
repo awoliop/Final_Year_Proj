@@ -22,7 +22,6 @@ const AuthPage = (props) => {
     // };
 
     const handleLogin = () => {
-      // const value = JSON.parse(localStorage.getItem("username"));
       const emailPart = localStorage.getItem("usernames112");
       console.log(emailPart);
       axios
@@ -37,7 +36,7 @@ const AuthPage = (props) => {
     // fetchEmailPart();
     // Call handleLogin function
     handleLogin();
-  }, []); // Empty dependency array to ensure the effect runs only once
+  }, []);
 
   return (
     <div className="background">
