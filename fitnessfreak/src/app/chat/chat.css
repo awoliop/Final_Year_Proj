@@ -127,7 +127,8 @@ body {
 }
 
 .ce-chat-feed-column {
-  overflow-y: hidden !important;
+  margin-bottom: 40px !important;
+  height: 93vh !important;
 }
 
 .ce-chat-list {
@@ -146,7 +147,7 @@ body {
   background-color: #020d1d !important;
 }
 .ce-chat-settings-title {
-  background-color: #020d1d !important;
+  /* background-color: #020d1d !important; */
 }
 
 .ce-chat-settings {
@@ -192,10 +193,12 @@ body {
 .ce-my-message-body {
   background-color: #44a8d3 !important;
   color: black !important;
+  margin-bottom: 2px !important;
 }
 
 .ce-their-message-body {
   background-color: orange !important;
+  margin-bottom: 2px !important;
   color: black !important;
 }
 .ce-chat-card {
@@ -211,6 +214,17 @@ body {
 
 .ce-message-form {
   position: fixed !important;
+
   width: 50% !important;
   bottom: -10px !important ;
+  background-color: black !important;
+}
+
+.ce-chat-card-title {
+  font-size: 20px !important;
+}
+
+.ce-danger-button {
+  background-color: orange !important;
+  color: black !important;
 }
