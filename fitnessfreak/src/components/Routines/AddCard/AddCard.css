@@ -1,0 +1,36 @@
+.icon-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 300px;
+  width: 300px;
+  border: 1px solid rgba(228, 163, 34, 0.18);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.image-card-section {
+  height: 50%;
+  /* border: 1px solid white; */
+  width: 100%;
+  border-radius: 12px;
+}
+
+.add-icon {
+  height: 110%;
+}
+
+.add-icon :active {
+  background-color: orange;
+}
+
+.add-button {
+  background-color: transparent;
+  border: none;
+  height: 100%;
+}
+/* 
+.add-button :active {
+  background-color: orange;
+} */

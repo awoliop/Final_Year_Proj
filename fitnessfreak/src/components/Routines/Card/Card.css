@@ -1,0 +1,63 @@
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 300px;
+  width: 300px;
+  border: 1px solid rgba(228, 164, 34, 0.664);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.image-card-section {
+  height: 50%;
+  /* border: 1px solid white; */
+  width: 100%;
+  border-radius: 12px;
+}
+
+.name-card-section {
+  height: 50%;
+  /* border-radius: 12px; */
+  border-top: 1px solid rgba(255, 255, 255, 0.633);
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.739);
+}
+
+.name-workout-list {
+  display: flex;
+  /* justify-content:
+   space-evenly; */
+  gap: 1rem;
+  margin-left: 10px;
+}
+
+.name-title {
+  margin: 10px;
+}
+.explore-button-contiain {
+  display: flex;
+  justify-content: end;
+  margin-right: 22px;
+}
+
+.explore-button {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  margin-top: 15px;
+  padding-right: 15px;
+  padding-left: 7px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  gap: 7px;
+  border: none;
+  background-color: #ffc20e;
+  border-radius: 5px;
+}
+
+.explore-button :nth-child(2) {
+  font-weight: bolder;
+  font-size: 15px;
+}

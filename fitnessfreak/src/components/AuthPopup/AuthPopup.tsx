@@ -334,6 +334,7 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup }) => {
               </LocalizationProvider>
 
               <button
+                className="popup-buttons"
                 onClick={(e) => {
                   e.preventDefault();
                   handleSignup();
@@ -345,6 +346,7 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup }) => {
             <p>
               Already have an account?{" "}
               <button
+                className="popup-buttons"
                 onClick={() => {
                   setShowSignup(false);
                 }}
@@ -389,6 +391,7 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup }) => {
                 }}
               />
               <button
+                className="popup-buttons"
                 onClick={(e) => {
                   e.preventDefault();
                   handleLogin();
@@ -400,6 +403,7 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup }) => {
             <p>
               Don't have an account?{" "}
               <button
+                className="popup-buttons"
                 onClick={() => {
                   setShowSignup(true);
                 }}

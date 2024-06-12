@@ -67,7 +67,7 @@ const NavBar = () => {
       <Link href="/nutrition">Nutrition</Link>
       <Link href="/ai-assistance">Assist</Link>
       <Link href="/workouts">Workouts</Link>
-      <Link href="/Routines">Routines</Link>
+      <Link href="/routines">Routines</Link>
       <Link href="/chat">Community</Link>
       <Link href="/about">About Us</Link>
       {/* <Link href="/profile">
@@ -75,6 +75,7 @@ const NavBar = () => {
       </Link> */}
       {isloggedin ? (
         <button
+          className="login-button"
           onClick={(e) => {
             e.preventDefault();
             handleLogout();
@@ -84,6 +85,7 @@ const NavBar = () => {
         </button>
       ) : (
         <button
+          className="login-button"
           onClick={() => {
             setShowpopup(true);
           }}

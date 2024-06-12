@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
+
+.render-routines {
+  margin: 40px;
+  margin-top: 50px;
+  /* font-family: "M PLUS Rounded 1c", sans-serif; */
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+hr {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 80%;
+  border: 1px solid rgba(255, 166, 0, 0.415);
+}
+
+.routine-title {
+  margin-bottom: 10px;
+  margin-left: 5px;
+  color: #ffc20e;
+}
+
+.card-container {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.card-containers {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}

@@ -41,3 +41,12 @@ nav button {
   transition: 0.3s ease-in-out;
   padding: 10px;
 }
+
+.login-button {
+  color: black;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 600;
+}
