@@ -13,7 +13,7 @@ hr {
   margin-top: 50px;
   margin-bottom: 50px;
   width: 80%;
-  border: 1px solid rgba(255, 166, 0, 0.415);
+  border: 1px solid rgba(2card55, 166, 0, 0.415);
 }
 
 .routine-title {
@@ -36,4 +36,14 @@ hr {
   justify-content: start;
   gap: 2rem;
   flex-wrap: wrap;
+}
+
+.links {
+  text-decoration: none;
+  color: inherit;
+}
+
+.links span,
+.links div {
+  color: inherit;
 }

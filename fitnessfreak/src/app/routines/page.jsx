@@ -5,20 +5,22 @@ import Card from "../../components/Routines/Card/Card";
 import AddCard from "../../components/Routines/AddCard/AddCard";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Link from "next/link";
+
 const page = () => {
+  const [routines, setRoutines] = useState([]);
   const fetchPopularRoutines = async () => {
     try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_API}/routines/popularroutines`
+      const response = await fetch(
+        "https://raw.githubusercontent.com/awoliop/PopularRoutines/6d5b0fe022917ad3eed8d56877914e043f9497af/PopularRoutines.json"
       );
-
-      console.log(response.data);
+      const data = await response.json();
+      setRoutines(data);
+      console.log(data);
     } catch (error) {
       console.error("Error fetching popular routines:", error);
     }
   };
-
-  fetchPopularRoutines();
 
   useEffect(() => {
     fetchPopularRoutines();
@@ -31,10 +33,13 @@ const page = () => {
           <h1>Popular Routines</h1>
         </div>
         <div className="card-container">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {routines.map((item, index) => {
+            return (
+              <Link href={"/routine/" + item.RoutineID} className="links">
+                <Card />
+              </Link>
+            );
+          })}
         </div>
       </div>
       <hr />

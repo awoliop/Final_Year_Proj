@@ -1,0 +1,45 @@
+A.strength
+
+3_4_Sit-Up"
+"90_90_Hamstring"
+"Alternate_Hammer_Curl"
+"Alternate_Leg_Diagonal_Bound"
+"Barbell_Curl"
+ "Barbell_Lunge"
+"Dips_-_Chest_Version"
+
+B.Cardio
+
+"Running_Treadmill"
+"Elliptical_Trainer"
+"Prowler_Sprint"
+"Rope_Jumping"
+"Stairmaster"
+"Rowing_Stationary"
+
+C. Flexibility and Mobility
+
+"Arm_Circles"
+"Ankle_Circles"
+"Frog_Hops"
+"Leg-Up_Hamstring_Stretch"
+"Calf_Stretch_Hands_Against_Wall"
+"Kneeling_Hip_Flexor"
+
+"Piriformis-SMR"
+
+D. olympic
+
+"Clean"
+"Frankenstein_Squat"
+"Kneeling_Jump_Squat"
+"Olympic_Squat"
+"Wide_Stance_Stiff_Legs"
+"Circus_Bell"
+
+
+
+
+
+
+
