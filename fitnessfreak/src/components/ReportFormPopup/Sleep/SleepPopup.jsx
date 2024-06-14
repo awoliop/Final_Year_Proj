@@ -1,0 +1,364 @@
+import React, { useEffect, useState } from "react";
+import "../popup.css";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { AiFillDelete, AiOutlineClose } from "react-icons/ai";
+import dayjs, { Dayjs } from "dayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { TimePicker } from "@mui/x-date-pickers";
+import { toast } from "react-toastify";
+import {
+  Unstable_NumberInput as BaseNumberInput,
+  numberInputClasses,
+} from "@mui/base/Unstable_NumberInput";
+import { styled } from "@mui/system";
+
+const CustomNumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
+  return (
+    <BaseNumberInput
+      slots={{
+        root: StyledInputRoot,
+        input: StyledInputElement,
+        incrementButton: StyledButton,
+        decrementButton: StyledButton,
+      }}
+      slotProps={{
+        incrementButton: {
+          children: "▴",
+        },
+        decrementButton: {
+          children: "▾",
+        },
+      }}
+      {...props}
+      ref={ref}
+    />
+  );
+});
+
+const blue = {
+  100: "#DAECFF",
+  200: "#80BFFF",
+  400: "#3399FF",
+  500: "#007FFF",
+  600: "#0072E5",
+  700: "#0059B2",
+};
+
+const grey = {
+  50: "#F3F6F9",
+  100: "#E5EAF2",
+  200: "#DAE2ED",
+  300: "#C7D0DD",
+  400: "#B0B8C4",
+  500: "#9DA8B7",
+  600: "#6B7A90",
+  700: "#434D5B",
+  800: "#303740",
+  900: "#1C2025",
+};
+
+const StyledInputRoot = styled("div")(
+  ({ theme }) => `
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 400;
+  border-radius: 8px;
+  color: ${theme.palette.mode === "dark" ? grey[300] : grey[900]};
+  background: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
+  border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
+  box-shadow: 0px 2px 4px ${
+    theme.palette.mode === "dark" ? "rgba(0,0,0, 0.5)" : "rgba(0,0,0, 0.05)"
+  };
+  display: grid;
+  grid-template-columns: 1fr 19px;
+  grid-template-rows: 1fr 1fr;
+  overflow: hidden;
+  column-gap: 8px;
+  padding: 4px;
+
+  &.${numberInputClasses.focused} {
+    border-color: ${blue[400]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === "dark" ? blue[700] : blue[200]};
+  }
+
+  &:hover {
+    border-color: ${blue[400]};
+  }
+
+  // firefox
+  &:focus-visible {
+    outline: 0;
+  }
+`
+);
+
+const StyledInputElement = styled("input")(
+  ({ theme }) => `
+  font-size: 0.875rem;
+  font-family: inherit;
+  font-weight: 400;
+  line-height: 1.5;
+  grid-column: 1/2;
+  grid-row: 1/3;
+  color: ${theme.palette.mode === "dark" ? grey[300] : grey[900]};
+  background: inherit;
+  border: none;
+  border-radius: inherit;
+  padding: 8px 12px;
+  outline: 0;
+`
+);
+
+const StyledButton = styled("button")(
+  ({ theme }) => `
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  appearance: none;
+  padding: 0;
+  width: 19px;
+  height: 19px;
+  font-family: system-ui, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1;
+  box-sizing: border-box;
+  background: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
+  border: 0;
+  color: ${theme.palette.mode === "dark" ? grey[300] : grey[900]};
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 120ms;
+
+  &:hover {
+    background: ${theme.palette.mode === "dark" ? grey[800] : grey[50]};
+    border-color: ${theme.palette.mode === "dark" ? grey[600] : grey[300]};
+    cursor: pointer;
+  }
+
+  &.${numberInputClasses.incrementButton} {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border: 1px solid;
+    border-bottom: 0;
+    border-color: ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
+    background: ${theme.palette.mode === "dark" ? grey[900] : grey[50]};
+    color: ${theme.palette.mode === "dark" ? grey[200] : grey[900]};
+
+    &:hover {
+      cursor: pointer;
+      color: #FFF;
+      background: ${theme.palette.mode === "dark" ? blue[600] : blue[500]};
+      border-color: ${theme.palette.mode === "dark" ? blue[400] : blue[600]};
+    }
+  }
+
+  &.${numberInputClasses.decrementButton} {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border: 1px solid;
+    border-color: ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
+    background: ${theme.palette.mode === "dark" ? grey[900] : grey[50]};
+    color: ${theme.palette.mode === "dark" ? grey[200] : grey[900]};
+  }
+
+  &:hover {
+    cursor: pointer;
+    color: #FFF;
+    background: ${theme.palette.mode === "dark" ? blue[600] : blue[500]};
+    border-color: ${theme.palette.mode === "dark" ? blue[400] : blue[600]};
+  }
+
+  & .arrow {
+    transform: translateY(-1px);
+  }
+
+  & .arrow {
+    transform: translateY(-1px);
+  }
+`
+);
+
+const SleepPopup = ({ setShowSleepPopup }) => {
+  const color = "#ffc20e";
+  const [date, setDate] = React.useState(() => dayjs() || null);
+  const [time, setTime] = React.useState(() => dayjs() || null);
+
+  const [sleep, setSleep] = useState({ date: "", durationInHrs: "" });
+
+  const [items, setItems] = useState([]); // Ensure items is an array
+
+  const saveSleep = async () => {
+    let tempdate = date.format("YYYY-MM-DD");
+    let temptime = time.format("HH:mm:ss");
+    let tempdatetime = tempdate + " " + temptime;
+    let finaldatetime = new Date(tempdatetime);
+    console.log(finaldatetime + " finalDateTime");
+
+    try {
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_BACKEND_API + "/sleeptrack/addsleepentry",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            date: finaldatetime,
+            durationInHrs: sleep.durationInHrs,
+          }),
+        }
+      );
+      const data = await response.json();
+      if (data.ok) {
+        toast.success("sleep added successfully");
+        getSleep();
+      } else {
+        toast.error("Error in adding sleep");
+      }
+    } catch (error) {
+      toast.error("Error in adding sleep");
+      console.error(error);
+    }
+  };
+
+  const getSleep = async () => {
+    setItems([]); // Reset items to an empty array
+    try {
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_BACKEND_API + "/sleeptrack/getsleepbydate",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            date: date,
+          }),
+        }
+      );
+      const data = await response.json();
+      if (data.ok) {
+        console.log(data.data, "sleep data for date!");
+        setItems(Array.isArray(data.data) ? data.data : []);
+        console.log(items); // Ensure the response is an array
+      } else {
+        toast.error("Error in getting the Sleep data");
+      }
+    } catch (error) {
+      toast.error("Error in getting the sleep data");
+      console.log(error);
+    }
+  };
+
+  const deleteSleep = async (item) => {
+    try {
+      fetch(process.env.NEXT_PUBLIC_BACKEND_API + "/sleeptrack/deletesleepentry", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          item: item.item,
+          date: item.date,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.ok) {
+            toast.success("Calorie intake item deleted successfully");
+            getSleep();
+          } else {
+            toast.error("Error  in deleting the calorie Intake");
+          }
+        });
+    } catch (error) {
+      toast.error("Error in deleting Calorie intake");
+      console.error(error);
+    }
+  };
+
+  const selectedDay = (val) => {
+    setDate(val);
+  };
+
+  useEffect(() => {
+    getSleep();
+  }, [date]);
+
+  return (
+    <div className="popupout">
+      <button
+        className="close"
+        onClick={() => {
+          // getSleep();
+          setShowSleepPopup(false);
+        }}
+      >
+        <AiOutlineClose />
+      </button>
+      <div className="popupbox">
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+            label="Basic Example"
+            value={date}
+            onChange={(newValue) => {
+              selectedDay(newValue);
+            }}
+          />
+        </LocalizationProvider>
+        <CustomNumberInput
+          aria-label="Demo number input"
+          placeholder="Type a number…"
+          onChange={(e) => {
+            setSleep({ ...sleep, durationInHrs: e.target.value });
+          }}
+        />
+
+        <div className="timebox">
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <TimePicker
+              label="controlled picker"
+              value={time}
+              onChange={(newValue) => {
+                setTime(newValue);
+              }}
+            />
+          </LocalizationProvider>
+        </div>
+        <Button variant="contained" color="warning" onClick={saveSleep}>
+          save
+        </Button>
+        <div className="hrline"></div>
+        <div className="items">
+          {items.map((item, index) => {
+            return (
+              <div className="item" key={index}>
+                <h3>{item.durationInHrs}</h3>
+
+                <Button
+                  onClick={() => {
+                    deleteSleep(item);
+                  }}
+                >
+                  <AiFillDelete />
+                </Button>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SleepPopup;

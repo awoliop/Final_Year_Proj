@@ -5,7 +5,7 @@
   width: 200px;
   height: 200px;
   border-radius: 20px;
-  border: 1px solid #e6e6e6;
+  /* border: 1px solid #e6e6e6; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,4 +60,13 @@
 
 .second-letter {
   font-size: 120px;
+}
+
+.acc-swiper {
+  height: 500px !important;
+  width: 300px !important;
+}
+
+.acc-swiper :nth-child(1) {
+  width: 100% !important;
 }

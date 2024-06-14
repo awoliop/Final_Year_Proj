@@ -1,5 +1,5 @@
 .reportpage {
-  background-color: #000a15;
+  background-color: #101316;
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -15,16 +15,29 @@
   border: none;
   border-radius: 50%;
   background-color: var(--col1);
-  color: white;
+  color: #ffffff;
   font-size: 30px;
   width: 80px;
   height: 80px;
   cursor: pointer;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 10px 0px #000000bf;
 }
 
 .reportpage .editbutton:hover {
-  background-color: black;
+  background-color: #000000;
+  /* background-color: #ffa500; */
   color: var(--col1);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+/* .MuiChartsAxis-tickLabel {
+  color: white !important;
+} */
+/* 
+.css-13aj3tc-MuiChartsSurface-root {
+  color: orange !important;
+} */
+
+.MuiChartsAxis-bottom {
+  color: white !important;
 }

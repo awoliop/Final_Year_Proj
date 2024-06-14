@@ -9,6 +9,7 @@ import Link from "next/link";
 
 const page = () => {
   const [routines, setRoutines] = useState([]);
+  // const [routineName, setRoutineName] = useState("Routine");
   const fetchPopularRoutines = async () => {
     try {
       const response = await fetch(
@@ -36,7 +37,7 @@ const page = () => {
           {routines.map((item, index) => {
             return (
               <Link href={"/routine/" + item.RoutineID} className="links">
-                <Card />
+                <Card routineName={item.RoutineID} />
               </Link>
             );
           })}
@@ -49,12 +50,6 @@ const page = () => {
         </div>
         <div className="card-container">
           <div className="card-containers">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
             <Card />
             <Card />
             <AddCard />

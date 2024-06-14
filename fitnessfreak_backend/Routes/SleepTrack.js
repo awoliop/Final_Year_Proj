@@ -16,7 +16,7 @@ function createResponse(ok, message, data) {
 router.post("/addsleepentry", authTokenHandler, async (req, res) => {
   const { date, durationInHrs } = req.body;
 
-  if (!date || !duration) {
+  if (!date || !durationInHrs) {
     return res.status(400).json(createResponse(false, "Please provide date and sleep duration"));
   }
 
@@ -40,7 +40,7 @@ router.post("/getsleepbydate", authTokenHandler, async (req, res) => {
 
   if (!date) {
     let date = new Date();
-    user.sleep = filterEntriesByDate(user.sleep, date);
+    user.sleep = filterEntriesByDate(user.sleep.durationInHrs, date);
 
     return res.json(createResponse(true, "Sleep entries for today", user.sleep));
   }
@@ -83,7 +83,8 @@ router.delete("/deletesleepentry", authTokenHandler, async (req, res) => {
   const user = await User.findById({ _id: userId });
 
   user.sleep = user.sleep.filter((entry) => {
-    return entry.date !== date;
+    // return entry.date.toString() !== date;
+    return entry.date.toString() !== new Date(date).toString();
   });
 
   await user.save();

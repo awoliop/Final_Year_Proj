@@ -108,7 +108,7 @@ const HomeBanner2 = () => {
         {workouts &&
           workouts.map((item, index) => {
             return (
-              <SwiperSlide key={index}>
+              <SwiperSlide key={index} className="acc-swiper">
                 <div
                   className="swiper-slide"
                   style={{
