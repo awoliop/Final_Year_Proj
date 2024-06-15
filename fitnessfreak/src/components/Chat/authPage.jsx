@@ -32,27 +32,32 @@ const AuthPage = (props) => {
     const handleLogin = async () => {
       function getSingleWordLocalStorageItem() {
         const regex = /^[a-zA-Z0-9]+$/;
+        let mostRecentItem = null;
+        let mostRecentTimestamp = 0;
 
         for (let i = 0; i < localStorage.length; i++) {
           const key = localStorage.key(i);
-
           if (regex.test(key)) {
-            const value = localStorage.getItem(key);
-            return { key, value }; // Return the matching key and its value
+            const item = JSON.parse(localStorage.getItem(key));
+            const itemTimestamp = new Date(item.timestamp).getTime();
+            if (itemTimestamp > mostRecentTimestamp) {
+              mostRecentTimestamp = itemTimestamp;
+              mostRecentItem = { key, value: item.value };
+            }
           }
         }
 
-        return null;
+        return mostRecentItem;
       }
 
-      const item = getSingleWordLocalStorageItem().value;
-      if (item) {
-        console.log("Matching localStorage item:", item);
+      const item = getSingleWordLocalStorageItem();
+      if (item && item.value) {
+        console.log("Matching localStorage item:", item.value);
       } else {
         console.log("No matching localStorage item found.");
       }
 
-      const data = item;
+      const data = item ? item.value : null;
       console.log("item");
       console.log(item);
 

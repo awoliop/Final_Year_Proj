@@ -120,9 +120,10 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, loginformData, setL
   const handleLogin = () => {
     console.log(loginformData);
 
-    localStorage.setItem(`${loginformData.email.split("@")[0]}`, loginformData.email.split("@")[0]);
-    console.log("The Local Storage");
-    console.log(localStorage.getItem(`${loginformData.email.split("@")[0]}`));
+    const username = loginformData.email.split("@")[0];
+    const timestamp = new Date().toISOString();
+    localStorage.setItem(username, JSON.stringify({ value: username, timestamp }));
+    console.log("Set item in localStorage:", localStorage.getItem(username));
 
     fetch(process.env.NEXT_PUBLIC_BACKEND_API + "/auth/login", {
       method: "POST",
