@@ -82,7 +82,7 @@ const pages = () => {
     const formData = new FormData();
     formData.append("myimage", image);
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_API}/image-upload/uploadimage`,
+      `${process.env.NEXT_PUBLIC_BACKEND_API}/imageuploadroutes/uploadimage`,
       {
         method: "POST",
         body: formData,
@@ -91,7 +91,7 @@ const pages = () => {
     if (response.ok) {
       const data = await response.json();
       console.log("image uploaded successfully!", data);
-      return data.imageurl;
+      return data.imageUrl;
     } else {
       console.error("Failed to upload Image!!");
       return null;

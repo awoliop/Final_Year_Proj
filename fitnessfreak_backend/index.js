@@ -24,7 +24,7 @@ require("dotenv").config();
 require("./db");
 
 app.use(bodyParser.json());
-const allowedOrigins = ["http://localhost:3000", "http://localhost:3001"]; // Add more origins as needed
+const allowedOrigins = ["http://localhost:3000", "http://localhost:3001"];
 
 app.use(
   cors({
@@ -45,7 +45,7 @@ app.use("/peripheral", peripheralRoutes);
 app.use("/routines", routines);
 app.use("/calorieintake", calorieIntakeRoutes);
 app.use("/admin", adminRoutes);
-app.use("/image-upload", imageUploadRoutes);
+app.use("/imageuploadroutes", imageUploadRoutes);
 app.use("/sleeptrack", sleepTrackRoutes);
 app.use("/steptrack", stepTrackRoutes);
 app.use("/weighttrack", weightTrackRoutes);
