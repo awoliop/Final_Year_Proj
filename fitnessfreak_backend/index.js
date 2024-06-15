@@ -8,6 +8,7 @@ const cookieParser = require("cookie-parser");
 
 const authRoutes = require("./Routes/Auth");
 const routines = require("./Routes/Routines");
+const EmailRoutes = require("./Routes/Email");
 const peripheralRoutes = require("./Routes/Peripheral");
 const calorieIntakeRoutes = require("./Routes/CalorieIntake");
 const adminRoutes = require("./Routes/Admin");
@@ -43,6 +44,7 @@ app.use(cookieParser());
 app.use("/auth", authRoutes);
 app.use("/peripheral", peripheralRoutes);
 app.use("/routines", routines);
+app.use("/email", EmailRoutes);
 app.use("/calorieintake", calorieIntakeRoutes);
 app.use("/admin", adminRoutes);
 app.use("/imageuploadroutes", imageUploadRoutes);

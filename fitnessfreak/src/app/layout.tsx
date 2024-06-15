@@ -5,6 +5,7 @@ import NavBar from "@/components/Navbar/Navbar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const inter = Inter({ subsets: ["latin"] });
+// import { AuthDataProvider } from "../hooks/AuthDataContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        {/* <AuthDataProvider> */}
         <NavBar />
         {children}
         <ToastContainer />
+        {/* </AuthDataProvider> */}
       </body>
     </html>
   );

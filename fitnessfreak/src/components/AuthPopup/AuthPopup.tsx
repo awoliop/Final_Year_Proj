@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import "./AuthPopup.css";
 import Image from "next/image";
@@ -13,6 +14,8 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
 import { DesktopDatePicker } from "@mui/x-date-pickers";
 import { ToastContainer, toast } from "react-toastify";
+import { parse } from "path";
+// import { useAuthData } from "../../hooks/AuthDataContext";
 
 interface AuthPopupProps {
   setShowpopup: React.Dispatch<React.SetStateAction<boolean>>;
@@ -30,7 +33,9 @@ interface SignupFormData {
   activityLevel: String | null;
 }
 
-const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup }) => {
+const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, loginformData, setLoginFormData }) => {
+  // const { authData, login } = useAuthData();
+  // const [email, setEmail] = useState("");
   const [showSignup, setShowSignup] = React.useState<boolean>(false);
   const [signupformData, setSignupFormData] = useState<SignupFormData>({
     name: "",
@@ -42,10 +47,6 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup }) => {
     gender: "",
     dob: new Date(),
     activityLevel: "",
-  });
-  const [loginformData, setLoginFormData] = useState({
-    email: "",
-    password: "",
   });
 
   // router.post('/register', async (req, res, next) => {
@@ -119,8 +120,9 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup }) => {
   const handleLogin = () => {
     console.log(loginformData);
 
-    localStorage.setItem("usernames112", loginformData.email.split("@")[0]);
-    console.log(localStorage.getItem("usernames112"));
+    localStorage.setItem(`${loginformData.email.split("@")[0]}`, loginformData.email.split("@")[0]);
+    console.log("The Local Storage");
+    console.log(localStorage.getItem(`${loginformData.email.split("@")[0]}`));
 
     fetch(process.env.NEXT_PUBLIC_BACKEND_API + "/auth/login", {
       method: "POST",

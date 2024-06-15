@@ -2,33 +2,68 @@
 import axios from "axios";
 import { parse } from "path";
 import { useEffect, useState } from "react";
+// import { useAuthData } from "../../hooks/AuthDataContext";
 
 const AuthPage = (props) => {
-  const [emailPart, setEmailPart] = useState("");
+  // // const [emailPart, setEmailPart] = useState("");
+  // const { authData } = useAuthData();
+
+  // const getEmailPart = (email) => {
+  //   const emailPart = email.split("@");
+  //   console.log(emailPart[0]);
+  //   return emailPart[0];
+  // };
 
   useEffect(() => {
     // const fetchEmailPart = async () => {
     //   try {
-    //     // Fetch the email part from the backend
-    //     const response = await axios.post(
-    //       `${process.env.NEXT_PUBLIC_BACKEND_API}/email/extract-email-part`
-    //     );
-    //     // Extract the email part from the response data
-    //     const { emailPart } = response.data;
-    //     setEmailPart(emailPart);
+    //     // const response = await api.get("/email/get-email");
+    //     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/email/get-email`);
+    //     const data = await response.json();
+
+    //     console.log(data);
+    //     setEmailPart(data);
+    //     console.log(emailPart);
     //   } catch (error) {
-    //     console.error("Error fetching email part:", error.response ? error.response.data : error);
+    //     throw error;
     //   }
     // };
 
-    const handleLogin = () => {
-      const emailPart = localStorage.getItem("usernames112");
-      console.log(emailPart);
+    const handleLogin = async () => {
+      function getSingleWordLocalStorageItem() {
+        const regex = /^[a-zA-Z0-9]+$/;
+
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+
+          if (regex.test(key)) {
+            const value = localStorage.getItem(key);
+            return { key, value }; // Return the matching key and its value
+          }
+        }
+
+        return null;
+      }
+
+      const item = getSingleWordLocalStorageItem().value;
+      if (item) {
+        console.log("Matching localStorage item:", item);
+      } else {
+        console.log("No matching localStorage item found.");
+      }
+
+      const data = item;
+      console.log("item");
+      console.log(item);
+
+      // const data = getEmailPart(authData);
+      console.log("data");
+      console.log(data);
       axios
         .post(`${process.env.NEXT_PUBLIC_BACKEND_API}/peripheral/authenticate`, {
-          username: emailPart,
+          username: data,
         })
-        .then((r) => props.onAuth({ ...r.data, secret: emailPart }))
+        .then((r) => props.onAuth({ ...r.data, secret: data }))
         .catch((error) => console.error("Error authenticating:", error));
     };
 

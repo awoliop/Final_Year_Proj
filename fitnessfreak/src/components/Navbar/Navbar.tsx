@@ -7,8 +7,15 @@ import Link from "next/link";
 import { IoIosBody } from "react-icons/io";
 import AuthPopup from "../AuthPopup/AuthPopup";
 import { ToastContainer, toast } from "react-toastify";
+import { useState } from "react";
+
+// import { AuthDataProvider } from "../../hooks/AuthDataContext";
 
 const NavBar = () => {
+  const [loginformData, setLoginFormData] = useState({
+    email: "",
+    password: "",
+  });
   const [isloggedin, setIsloggedin] = React.useState<boolean>(false);
 
   const [showpopup, setShowpopup] = React.useState<boolean>(false);
@@ -30,6 +37,29 @@ const NavBar = () => {
         console.log(err);
       });
   };
+
+  // function deleteSingleWordLocalStorageItems() {
+  //   // Regular expression to match single words without special characters
+  //   const regex = /^[a-zA-Z0-9]+$/;
+
+  //   // Iterate over all keys in localStorage
+  //   for (let i = 0; i < localStorage.length; i++) {
+  //     // Check if the key matches the regex
+  //     const key = localStorage.key(i);
+  //     if (key != null) {
+  //       if (regex.test(key)) {
+  //         localStorage.removeItem(key);
+  //         console.log(`Item with key "${key}" has been removed from localStorage.`);
+
+  //         // Adjust index because the localStorage length is changed after removal
+  //         i--;
+  //       }
+  //     }
+  //   }
+  // }
+
+  // // Call the function to delete the specified localStorage items
+  // deleteSingleWordLocalStorageItems();
 
   const handleLogout = () => {
     fetch(process.env.NEXT_PUBLIC_BACKEND_API + "/auth/logout", {
@@ -60,6 +90,7 @@ const NavBar = () => {
   }, [showpopup]);
 
   return (
+    // <AuthDataProvider>
     <nav>
       <Link href="/">{/* <Image src={logo} alt="logo" /> */}</Link>
 
@@ -93,7 +124,13 @@ const NavBar = () => {
           Login
         </button>
       )}
-      {showpopup && <AuthPopup setShowpopup={setShowpopup} />}
+      {showpopup && (
+        <AuthPopup
+          setShowpopup={setShowpopup}
+          loginformData={loginformData}
+          setLoginFormData={setLoginFormData}
+        />
+      )}
     </nav>
   );
 };
