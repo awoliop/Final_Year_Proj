@@ -5,15 +5,6 @@ import { useEffect, useState } from "react";
 // import { useAuthData } from "../../hooks/AuthDataContext";
 
 const AuthPage = (props) => {
-  // // const [emailPart, setEmailPart] = useState("");
-  // const { authData } = useAuthData();
-
-  // const getEmailPart = (email) => {
-  //   const emailPart = email.split("@");
-  //   console.log(emailPart[0]);
-  //   return emailPart[0];
-  // };
-
   useEffect(() => {
     // const fetchEmailPart = async () => {
     //   try {
@@ -31,21 +22,27 @@ const AuthPage = (props) => {
 
     const handleLogin = async () => {
       function getSingleWordLocalStorageItem() {
-        const regex = /^[a-zA-Z0-9]+$/;
-        let mostRecentItem = null;
+        const regex = /^[a-zA-Z0-9]+$/; // Define your regex pattern
         let mostRecentTimestamp = 0;
+        let mostRecentItem = null;
 
         for (let i = 0; i < localStorage.length; i++) {
           const key = localStorage.key(i);
           if (regex.test(key)) {
-            const item = JSON.parse(localStorage.getItem(key));
-            const itemTimestamp = new Date(item.timestamp).getTime();
-            if (itemTimestamp > mostRecentTimestamp) {
-              mostRecentTimestamp = itemTimestamp;
-              mostRecentItem = { key, value: item.value };
+            try {
+              const item = JSON.parse(localStorage.getItem(key));
+              const itemTimestamp = new Date(item.timestamp).getTime();
+              if (itemTimestamp > mostRecentTimestamp) {
+                mostRecentTimestamp = itemTimestamp;
+                mostRecentItem = { key, value: item.value };
+              }
+            } catch (e) {
+              console.error("Error parsing JSON from localStorage:", e);
             }
           }
         }
+
+        console.log("Most recent item:", mostRecentItem);
 
         return mostRecentItem;
       }

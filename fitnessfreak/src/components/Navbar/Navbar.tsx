@@ -8,10 +8,13 @@ import { IoIosBody } from "react-icons/io";
 import AuthPopup from "../AuthPopup/AuthPopup";
 import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
+// import { useRouter } from "next/router";
 
 // import { AuthDataProvider } from "../../hooks/AuthDataContext";
 
 const NavBar = () => {
+  // const router = useRouter();
+
   const [loginformData, setLoginFormData] = useState({
     email: "",
     password: "",
@@ -38,29 +41,6 @@ const NavBar = () => {
       });
   };
 
-  // function deleteSingleWordLocalStorageItems() {
-  //   // Regular expression to match single words without special characters
-  //   const regex = /^[a-zA-Z0-9]+$/;
-
-  //   // Iterate over all keys in localStorage
-  //   for (let i = 0; i < localStorage.length; i++) {
-  //     // Check if the key matches the regex
-  //     const key = localStorage.key(i);
-  //     if (key != null) {
-  //       if (regex.test(key)) {
-  //         localStorage.removeItem(key);
-  //         console.log(`Item with key "${key}" has been removed from localStorage.`);
-
-  //         // Adjust index because the localStorage length is changed after removal
-  //         i--;
-  //       }
-  //     }
-  //   }
-  // }
-
-  // // Call the function to delete the specified localStorage items
-  // deleteSingleWordLocalStorageItems();
-
   const handleLogout = () => {
     fetch(process.env.NEXT_PUBLIC_BACKEND_API + "/auth/logout", {
       method: "POST",
@@ -85,6 +65,27 @@ const NavBar = () => {
       });
   };
 
+  const checkAuthentication = async () => {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/auth/checklogin`, {
+      method: "POST",
+      credentials: "include", // Include cookies in the request
+    });
+    const data = await response.json();
+    return data.ok;
+  };
+
+  const handleLinkClick = async (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const isAuthenticated = await checkAuthentication();
+    if (isAuthenticated) {
+      window.location.href = href;
+      setShowpopup(false);
+    } else {
+      // window.location.href = "/AuthPopup";
+      setShowpopup(true);
+    }
+  };
+
   React.useEffect(() => {
     checklogin();
   }, [showpopup]);
@@ -94,13 +95,27 @@ const NavBar = () => {
     <nav>
       <Link href="/">{/* <Image src={logo} alt="logo" /> */}</Link>
 
-      <Link href="/">Home</Link>
-      <Link href="/nutrition">Nutrition</Link>
-      <Link href="/ai-assistance">Assist</Link>
-      <Link href="/workouts">Workouts</Link>
-      <Link href="/routines">Routines</Link>
-      <Link href="/chat">Community</Link>
-      <Link href="/about">About Us</Link>
+      <Link href="/" onClick={(e) => handleLinkClick(e, "/")}>
+        Home
+      </Link>
+      <Link href="/nutrition" onClick={(e) => handleLinkClick(e, "/nutrition")}>
+        Nutrition
+      </Link>
+      <Link href="/ai-assistance" onClick={(e) => handleLinkClick(e, "/ai-assistance")}>
+        Assist
+      </Link>
+      <Link href="/workouts" onClick={(e) => handleLinkClick(e, "/workouts")}>
+        Workouts
+      </Link>
+      <Link href="/routines" onClick={(e) => handleLinkClick(e, "/routines")}>
+        Routines
+      </Link>
+      <Link href="/chat" onClick={(e) => handleLinkClick(e, "/chat")}>
+        Community
+      </Link>
+      <Link href="/about" onClick={(e) => handleLinkClick(e, "/about")}>
+        About Us
+      </Link>
       {/* <Link href="/profile">
         <IoIosBody />
       </Link> */}
