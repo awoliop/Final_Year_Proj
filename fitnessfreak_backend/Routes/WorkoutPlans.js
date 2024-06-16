@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const errorHandler = require("../Middlewares/errorMiddleware");
 const adminTokenHandler = require("../Middlewares/checkAdminToken");
-const User = require("../Models/UserSchema");
 const Workout = require("../Models/WorkoutSchema");
 
 function createResponse(ok, message, data) {
@@ -15,54 +14,15 @@ function createResponse(ok, message, data) {
 
 router.post("/workouts", adminTokenHandler, async (req, res) => {
   try {
-    // name: {
-    //     type: String,
-    //     required: true,
-    // },
-    // description: {
-    //     type: String,
-    //     required: true,
-    // },
-    // durationInMinutes: {
-    //     type: Number,
-    //     required: true,
-    // },
-    // exercises: [
-    //     {
-    //         name: {
-    //             type: String,
-    //             required: true,
-    //         },
-    //         description: {
-    //             type: String,
-    //             required: true,
-    //         },
-    //         sets: {
-    //             type: Number,
-    //             required: true,
-    //         },
-    //         reps: {
-    //             type: Number,
-    //             required: true,
-    //         },
-    //         imageURL: {
-    //             type: String,
-    //             required: true,
-    //         },
-    //     }
-    // ],
-    // imageURL: {
-    //     type: String,
-    //     required: true,
-    // },
-
-    const { name, description, durationInMinutes, exercises, imageURL } = req.body;
+    const { routineID, exercises, suggestions, cautions, restrictions, mandatoriesPriorToWorkout } =
+      req.body;
     const workout = new Workout({
-      name,
-      description,
-      durationInMinutes,
+      routineID,
       exercises,
-      imageURL,
+      suggestions,
+      cautions,
+      restrictions,
+      mandatoriesPriorToWorkout,
     });
 
     await workout.save();
@@ -93,12 +53,14 @@ router.get("/workouts/:id", async (req, res) => {
 router.put("/workouts/:id", adminTokenHandler, async (req, res) => {
   try {
     const workout = await Workout.findById(req.params.id);
-    const { name, description, durationInMinutes, exercises, imageURL } = req.body;
-    workout.name = name;
-    workout.description = description;
-    workout.durationInMinutes = durationInMinutes;
+    const { routineID, exercises, suggestions, cautions, restrictions, mandatoriesPriorToWorkout } =
+      req.body;
+    workout.routineID = routineID;
     workout.exercises = exercises;
-    workout.imageURL = imageURL;
+    workout.suggestions = suggestions;
+    workout.cautions = cautions;
+    workout.restrictions = restrictions;
+    workout.mandatoriesPriorToWorkout = mandatoriesPriorToWorkout;
     await workout.save();
     res.json(createResponse(true, "Workout updated successfully", workout));
   } catch (err) {

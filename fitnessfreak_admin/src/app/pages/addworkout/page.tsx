@@ -2,43 +2,41 @@
 import React, { useEffect } from "react";
 import "./addworkout.css";
 import { toast } from "react-toastify";
-import { HtmlContext } from "next/dist/server/future/route-modules/app-page/vendored/contexts/entrypoints";
-import { error } from "console";
 
-interface Workout {
-  name: string;
-  description: string;
-  durationInMinutes: number;
-  exercises: Exercises[];
+interface Exercise {
+  id: string;
+  exercise: string;
   imageURL: string;
+  primaryMuscle: string;
+  instructions: string[];
   imageFile: File | null;
 }
 
-interface Exercises {
-  name: string;
-  description: string;
-  sets: number;
-  reps: number;
-  imageURL: string;
-  imageFile: File | null;
+interface Workout {
+  routineID: string;
+  exercises: Exercise[];
+  suggestions: string[];
+  cautions: string[];
+  restrictions: string[];
+  mandatoriesPriorToWorkout: string[];
 }
 
 const pages = () => {
   const [workout, setWorkout] = React.useState<Workout>({
-    name: "",
-    description: "",
-    durationInMinutes: 0,
+    routineID: "",
     exercises: [],
-    imageURL: "",
-    imageFile: null,
+    suggestions: [""],
+    cautions: [""],
+    restrictions: [""],
+    mandatoriesPriorToWorkout: [""],
   });
 
-  const [exercise, setExercise] = React.useState<Exercises>({
-    name: "",
-    description: "",
-    sets: 0,
-    reps: 0,
+  const [exercise, setExercise] = React.useState<Exercise>({
+    id: "",
+    exercise: "",
     imageURL: "",
+    primaryMuscle: "",
+    instructions: [""],
     imageFile: null,
   });
 
@@ -60,12 +58,32 @@ const pages = () => {
     });
   };
 
+  const handleArrayChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: keyof Workout,
+    index: number
+  ) => {
+    const newArray = [...workout[field]];
+    newArray[index] = e.target.value;
+    setWorkout({
+      ...workout,
+      [field]: newArray,
+    });
+  };
+
+  const addField = (field: keyof Workout) => {
+    setWorkout({
+      ...workout,
+      [field]: [...workout[field], ""],
+    });
+  };
+
   const addExerciseToWorkout = () => {
     if (
-      exercise.name === "" ||
-      exercise.description === "" ||
-      exercise.sets === 0 ||
-      exercise.reps === 0 ||
+      exercise.id === "" ||
+      exercise.exercise === "" ||
+      exercise.primaryMuscle === "" ||
+      exercise.instructions.length === 0 ||
       exercise.imageFile === null
     ) {
       toast.error("Please fill all the fields", {
@@ -131,21 +149,17 @@ const pages = () => {
     await checkLogin();
 
     if (
-      workout.name === "" ||
-      workout.description === "" ||
-      workout.durationInMinutes === 0 ||
-      workout.imageFile === null ||
-      workout.exercises.length === 0
+      workout.routineID === "" ||
+      workout.exercises.length === 0 ||
+      workout.suggestions.length === 0 ||
+      workout.cautions.length === 0 ||
+      workout.restrictions.length === 0 ||
+      workout.mandatoriesPriorToWorkout.length === 0
     ) {
       toast.error("Please fill all the fields!", {
         position: "top-center",
       });
       return;
-    }
-
-    let workoutImageURL = null;
-    if (workout.imageFile) {
-      workoutImageURL = await uploadImage(workout.imageFile);
     }
 
     const updatedExercises = await Promise.all(
@@ -160,7 +174,6 @@ const pages = () => {
 
     const updatedWorkout = {
       ...workout,
-      imageURL: workoutImageURL || workout.imageURL,
       exercises: updatedExercises,
     };
 
@@ -196,73 +209,121 @@ const pages = () => {
       <h1 className="title">Add Workout</h1>
       <input
         type="text"
-        name="name"
-        placeholder="Workout name"
-        value={workout.name}
+        name="routineID"
+        placeholder="Routine ID"
+        value={workout.routineID}
         onChange={handleWorkOutChange}
       />
-      <textarea
-        name="description"
-        placeholder="Workout description"
-        value={workout.description}
-        onChange={handleWorkOutChange}
-        rows={5}
-        cols={50}
-      />
-      <input
-        type="number"
-        name="durationInMinutes"
-        placeholder="Workout duration"
-        value={workout.durationInMinutes}
-        onChange={handleWorkOutChange}
-      />
-      <input
-        type="file"
-        name="imageFile"
-        placeholder="Workout image"
-        onChange={(e) => {
-          if (e.target.files) {
-            setWorkout({
-              ...workout,
-              imageFile: e.target.files[0],
-            });
-          }
-        }}
-      />
-
+      <div>
+        <h2>Suggestions</h2>
+        {workout.suggestions.map((suggestion, index) => (
+          <div key={index}>
+            <input
+              type="text"
+              value={suggestion}
+              onChange={(e) => handleArrayChange(e, "suggestions", index)}
+            />
+          </div>
+        ))}
+        <button onClick={() => addField("suggestions")}>Add Suggestion</button>
+      </div>
+      <div>
+        <h2>Cautions</h2>
+        {workout.cautions.map((caution, index) => (
+          <div key={index}>
+            <input
+              type="text"
+              value={caution}
+              onChange={(e) => handleArrayChange(e, "cautions", index)}
+            />
+          </div>
+        ))}
+        <button onClick={() => addField("cautions")}>Add Caution</button>
+      </div>
+      <div>
+        <h2>Restrictions</h2>
+        {workout.restrictions.map((restriction, index) => (
+          <div key={index}>
+            <input
+              type="text"
+              value={restriction}
+              onChange={(e) => handleArrayChange(e, "restrictions", index)}
+            />
+          </div>
+        ))}
+        <button onClick={() => addField("restrictions")}>
+          Add Restriction
+        </button>
+      </div>
+      <div>
+        <h2>Mandatories Prior to Workout</h2>
+        {workout.mandatoriesPriorToWorkout.map((mandatory, index) => (
+          <div key={index}>
+            <input
+              type="text"
+              value={mandatory}
+              onChange={(e) =>
+                handleArrayChange(e, "mandatoriesPriorToWorkout", index)
+              }
+            />
+          </div>
+        ))}
+        <button onClick={() => addField("mandatoriesPriorToWorkout")}>
+          Add Mandatory
+        </button>
+      </div>
       <div className="exercise-form">
         <h1 className="title">Add Exercise to Workout</h1>
         <input
           type="text"
-          name="name"
+          name="id"
+          placeholder="Exercise ID"
+          value={exercise.id}
+          onChange={handleExerciseChange}
+        />
+        <input
+          type="text"
+          name="exercise"
           placeholder="Exercise name"
-          value={exercise.name}
+          value={exercise.exercise}
           onChange={handleExerciseChange}
         />
-        <textarea
-          name="description"
-          placeholder="Exercise description"
-          value={exercise.description}
-          onChange={handleExerciseChange}
-          rows={5}
-          cols={50}
-        />
-        <label htmlFor="sets">Sets</label>
         <input
-          type="number"
-          name="sets"
-          placeholder="Sets"
-          value={exercise.sets}
+          type="text"
+          name="primaryMuscle"
+          placeholder="Primary Muscle"
+          value={exercise.primaryMuscle}
           onChange={handleExerciseChange}
         />
-        <label htmlFor="reps">Reps</label>
-        <input
-          type="number"
-          name="reps"
-          placeholder="Reps"
-          value={exercise.reps}
-          onChange={handleExerciseChange}
-        />
+        <div>
+          <h2>Instructions</h2>
+          {exercise.instructions.map((instruction, index) => (
+            <div key={index}>
+              <input
+                type="text"
+                value={instruction}
+                onChange={(e) =>
+                  setExercise({
+                    ...exercise,
+                    instructions: exercise.instructions.map((inst, i) =>
+                      i === index ? e.target.value : inst
+                    ),
+                  })
+                }
+              />
+            </div>
+          ))}
+          <button
+            onClick={() =>
+              setExercise({
+                ...exercise,
+                instructions: [...exercise.instructions, ""],
+              })
+            }
+          >
+            Add Instruction
+          </button>
+        </div>
         <input
           type="file"
           name="imageFile"
@@ -281,10 +342,9 @@ const pages = () => {
       <div className="exercises">
         {workout.exercises.map((exercise, index) => (
           <div className="exercise" key={index}>
-            <h1>{exercise.name}</h1>
-            <p>{exercise.description}</p>
-            <p>Sets: {exercise.sets}</p>
-            <p>Reps: {exercise.reps}</p>
+            <h1>{exercise.exercise}</h1>
+            <p>Primary Muscle: {exercise.primaryMuscle}</p>
+            <p>Instructions: {exercise.instructions.join(", ")}</p>
             <img
               className="imageDisplay"
               src={

@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const page = () => {
   const [routines, setRoutines] = useState([]);
-  // const [routineName, setRoutineName] = useState("Routine");
+  const [adminRoutines, setAdminRoutines] = useState([]);
 
   const fetchPopularRoutines = async () => {
     try {
@@ -55,7 +55,6 @@ const page = () => {
 
   useEffect(() => {
     adminadded();
-
     fetchPopularRoutines();
   }, []);
 

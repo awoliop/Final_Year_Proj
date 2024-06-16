@@ -1,46 +1,49 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+
+const exerciseSchema = new mongoose.Schema({
+  id: {
+    type: String,
+    required: true,
+  },
+  exercise: {
+    type: String,
+    required: true,
+  },
+  imageURL: {
+    type: String,
+    required: true,
+  },
+  primaryMuscle: {
+    type: String,
+    required: true,
+  },
+  instructions: {
+    type: [String],
+    required: true,
+  },
+});
 
 const workoutSchema = new mongoose.Schema(
   {
-    name: {
+    routineID: {
       type: String,
       required: true,
     },
-    description: {
-      type: String,
+    exercises: [exerciseSchema],
+    suggestions: {
+      type: [String],
       required: true,
     },
-    durationInMinutes: {
-      type: Number,
+    cautions: {
+      type: [String],
       required: true,
     },
-    exercises: [
-      {
-        name: {
-          type: String,
-          required: true,
-        },
-        description: {
-          type: String,
-          required: true,
-        },
-        sets: {
-          type: Number,
-          required: true,
-        },
-        reps: {
-          type: Number,
-          required: true,
-        },
-        imageURL: {
-          type: String,
-          required: true,
-        },
-      },
-    ],
-    imageURL: {
-      type: String,
+    restrictions: {
+      type: [String],
+      required: true,
+    },
+    mandatoriesPriorToWorkout: {
+      type: [String],
       required: true,
     },
   },
