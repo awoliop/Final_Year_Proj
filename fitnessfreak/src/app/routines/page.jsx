@@ -1,15 +1,14 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Routines.css";
 import Card from "../../components/Routines/Card/Card";
 import AddCard from "../../components/Routines/AddCard/AddCard";
-import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 
 const page = () => {
   const [routines, setRoutines] = useState([]);
-  const [adminRoutines, setAdminRoutines] = useState([]);
+  const [adminWorkouts, setAdminWorkouts] = useState([]);
 
   const fetchPopularRoutines = async () => {
     try {
@@ -24,37 +23,28 @@ const page = () => {
     }
   };
 
-  const adminadded = () => {
+  const fetchAdminWorkouts = async () => {
     try {
-      // Fetching workouts from the backend API
-      fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/workoutplans/workouts`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/workoutplans/workouts`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-
-          if (data.ok) {
-            // Handle successful response
-            console.log("Workouts fetched successfully:", data.data);
-          } else {
-            // Handle error response
-            console.error("Error fetching workouts:", data.message);
-          }
-        })
-        .catch((err) => {
-          console.error("Error fetching workouts:", err);
-        });
+      });
+      const data = await response.json();
+      if (data.ok) {
+        setAdminWorkouts(data.data);
+        console.log("Workouts fetched successfully:", data.data);
+      } else {
+        console.error("Error fetching workouts:", data.message);
+      }
     } catch (error) {
-      console.error(error);
+      console.error("Error fetching workouts:", error);
     }
   };
 
   useEffect(() => {
-    adminadded();
+    fetchAdminWorkouts();
     fetchPopularRoutines();
   }, []);
 
@@ -65,13 +55,24 @@ const page = () => {
           <h1>Popular Routines</h1>
         </div>
         <div className="card-container">
-          {routines.map((item, index) => {
-            return (
-              <Link href={"/routine/" + item.RoutineID} className="links">
-                <Card routineName={item.RoutineID} />
-              </Link>
-            );
-          })}
+          {routines.map((item, index) => (
+            <Link href={"/routine/" + item.RoutineID} className="links" key={index}>
+              <Card routineName={item.RoutineID} />
+            </Link>
+          ))}
+        </div>
+      </div>
+      <hr />
+      <div className="admin-routines">
+        <div className="routine-title">
+          <h1>New Updates</h1>
+        </div>
+        <div className="card-container">
+          {adminWorkouts.map((item, index) => (
+            <Link href={"/routine/" + item.RoutineID} className="links" key={index}>
+              <Card routineName={item.RoutineID} />
+            </Link>
+          ))}
         </div>
       </div>
       <hr />
@@ -85,9 +86,6 @@ const page = () => {
             <Card />
             <AddCard />
           </div>
-          {/* <div>
-            <AddCard />
-          </div> */}
         </div>
       </div>
     </div>
