@@ -116,9 +116,7 @@ const NavBar = () => {
       <Link href="/about" onClick={(e) => handleLinkClick(e, "/about")}>
         About Us
       </Link>
-      {/* <Link href="/profile">
-        <IoIosBody />
-      </Link> */}
+
       {isloggedin ? (
         <button
           className="login-button"

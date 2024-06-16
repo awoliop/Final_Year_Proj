@@ -69,7 +69,7 @@ const page = () => {
         </div>
         <div className="card-container">
           {adminWorkouts.map((item, index) => (
-            <Link href={"/routine/" + item.routineID} className="links" key={index}>
+            <Link href={"/adminroutine/" + item.routineID} className="links" key={index}>
               <Card routineName={item.routineID} />
             </Link>
           ))}
