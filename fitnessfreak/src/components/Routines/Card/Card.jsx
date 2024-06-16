@@ -17,7 +17,7 @@ const Card = ({ routineName }) => {
       );
       const data = await response.json();
       setRoutines(data);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.error("Error fetching popular routines:", error);
     }

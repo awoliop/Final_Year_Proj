@@ -21,7 +21,7 @@ const Page = ({ params }) => {
       );
       const data = await response.json();
       setWorkouts(data);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.error(error);
     }
@@ -34,7 +34,7 @@ const Page = ({ params }) => {
       );
       const data = await response.json();
       setRoutines(data);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.error("Error fetching popular routines:", error);
     }
@@ -44,7 +44,37 @@ const Page = ({ params }) => {
     return workouts.filter((item) => item.id === RoutineContentElement);
   };
 
+  const adminadded = () => {
+    try {
+      // Fetching workouts from the backend API
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/workoutplans/workouts`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+
+          if (data.ok) {
+            // Handle successful response
+            console.log("Workouts fetched successfully:", data.data);
+          } else {
+            // Handle error response
+            console.error("Error fetching workouts:", data.message);
+          }
+        })
+        .catch((err) => {
+          console.error("Error fetching workouts:", err);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
+    adminadded();
     fetchPopularRoutines();
     fetchWorkouts();
   }, [params.id]);
