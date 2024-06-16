@@ -72,6 +72,25 @@ const Page = ({ params }) => {
       console.error(error);
     }
   };
+  const fetchAdminWorkouts = async () => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/workoutplans/workouts`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      if (data.ok) {
+        setAdminWorkouts(data.data);
+        console.log("Workouts fetched successfully:", data.data);
+      } else {
+        console.error("Error fetching workouts:", data.message);
+      }
+    } catch (error) {
+      console.error("Error fetching workouts:", error);
+    }
+  };
 
   useEffect(() => {
     adminadded();
