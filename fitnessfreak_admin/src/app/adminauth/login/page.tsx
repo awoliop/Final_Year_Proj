@@ -25,40 +25,69 @@ const LoginPage = () => {
         console.log("Admin logged in Succesfully", data);
         toast.success("Admin Logged in SuccessFUlly", {
           position: "top-center",
+          style: {
+            backgroundColor: "white",
+          },
         });
-        window.location.href = "/pages/addworkout";
+        window.location.href = "/home";
       } else {
         console.error("Admin Login In failed", response.statusText);
         toast.error("Admin Login failed", {
           position: "top-center",
+          style: {
+            backgroundColor: "white",
+          },
         });
       }
     } catch (error) {
       toast.error("An Error occured during registration!", {
         position: "top-center",
+        style: {
+          backgroundColor: "white",
+        },
       });
       console.error("An Error occured during registration !");
     }
   };
   return (
     <div className="formpage">
-      <input
-        type="text"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
-      />
-      <input
-        type="text"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-      />
-      <button onClick={handleLogin}>Log In</button>
+      <div className="authPopup">
+        <p
+          className="title"
+          style={{
+            marginBottom: "20px",
+          }}
+        >
+          Administrator Login
+        </p>
+
+        <input
+          type="text"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+        />
+        <input
+          type="text"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
+        <div className="buttons">
+          <button onClick={handleLogin}>Log In</button>
+          <button
+            onClick={() => {
+              window.location.href = "/adminauth/register";
+            }}
+          >
+            Sign Up
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

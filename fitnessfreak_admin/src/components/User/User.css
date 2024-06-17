@@ -1,0 +1,18 @@
+.user-item {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.user-manager-dashboard {
+  padding-left: 30px;
+}
+
+.TableCell.Mui-Selected {
+  text-align: center;
+}
+
+.MuiTableCell-root {
+  color: white !important;
+  font-size: 18px !important;
+}

@@ -4,6 +4,7 @@ const Admin = require("../Models/AdminSchema"); // Import the Admin model
 const bcrypt = require("bcrypt");
 const errorHandler = require("../Middlewares/errorMiddleware");
 const adminTokenHandler = require("../Middlewares/checkAdminToken");
+const User = require("../Models/UserSchema");
 
 const jwt = require("jsonwebtoken");
 
@@ -69,12 +70,43 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
+router.post("/logout", async (req, res, next) => {
+  try {
+    // Clear the admin authentication token cookie
+    res.clearCookie("adminAuthToken");
+    res.status(200).json(createResponse(true, "Admin logout successful"));
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get("/checklogin", adminTokenHandler, async (req, res) => {
   res.json({
     adminId: req.adminId,
     ok: true,
     message: "Admin authenticated successfully",
   });
+});
+
+router.get("/users", adminTokenHandler, async (req, res) => {
+  try {
+    const users = await User.find({});
+    res.json(createResponse(true, "Users fetched successfully", users));
+  } catch (err) {
+    res.json(createResponse(false, err.message));
+  }
+});
+
+router.delete("/users/:id", adminTokenHandler, async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) {
+      return res.status(404).json(createResponse(false, "User not found"));
+    }
+    res.json(createResponse(true, "User deleted successfully"));
+  } catch (err) {
+    res.status(500).json(createResponse(false, err.message));
+  }
 });
 
 router.use(errorHandler);

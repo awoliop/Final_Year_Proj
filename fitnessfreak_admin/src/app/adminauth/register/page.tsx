@@ -27,6 +27,7 @@ const singupPage = () => {
         toast.success("Admin Registerd SuccessFUlly", {
           position: "top-center",
         });
+        window.location.href = "/adminauth/login";
       } else {
         console.error("Admin registration failed", response.statusText);
         toast.error("Admin registration failed", {
@@ -42,31 +43,43 @@ const singupPage = () => {
   };
   return (
     <div className="formpage">
-      <input
-        type="text"
-        placeholder="Name"
-        value={name}
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-      />
-      <input
-        type="text"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
-      />
-      <input
-        type="text"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-      />
-      <button onClick={handleSignup}>Sign Up</button>
+      <div className="authPopup">
+        <p className="title">Administrator Signup</p>
+        <input
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+        />
+        <input
+          type="text"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+        />
+        <input
+          type="text"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
+        <div className="buttons">
+          <button onClick={handleSignup}>Sign Up</button>
+          <button
+            onClick={() => {
+              window.location.href = "/adminauth/login";
+            }}
+          >
+            Log In
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

@@ -8,9 +8,6 @@ import { IoIosBody } from "react-icons/io";
 import AuthPopup from "../AuthPopup/AuthPopup";
 import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
-// import { useRouter } from "next/router";
-
-// import { AuthDataProvider } from "../../hooks/AuthDataContext";
 
 const NavBar = () => {
   // const router = useRouter();

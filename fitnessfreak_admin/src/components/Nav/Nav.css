@@ -1,0 +1,61 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-top: 100px;
+  /* border: 1px solid orange; */
+}
+
+.nav-buttons:hover {
+  pointer-events: none; /* Disables click events */
+  cursor: default; /* Changes cursor to default */
+  color: inherit; /* Keeps the text color unchanged */
+  background-color: inherit; /* Keeps the background color unchanged */
+}
+
+.isactive {
+  font-size: 22px;
+  border: none;
+  border-bottom: 2px solid #05d3d8;
+  transition: all 1.4 ease-in;
+  font-weight: 500;
+  color: #05d3d8;
+}
+.isactive:hover {
+  pointer-events: none; /* Disables click events */
+  cursor: default; /* Changes cursor to default */
+  color: inherit; /* Keeps the text color unchanged */
+  background-color: inherit;
+}
+
+.ispassive {
+  font-size: 22px;
+  border: none;
+  font-weight: 500;
+  color: #05d3d8;
+}
+.ispassive:hover {
+  cursor: default;
+  color: inherit;
+  background-color: inherit;
+}
+
+.header {
+  color: orange;
+  margin-top: 30px;
+}
+
+hr {
+  width: 80%;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  border-color: orange;
+}
+
+.nav-contianersss {
+  padding-left: 40px;
+}
+
+.users-title {
+  margin-bottom: 30px;
+}

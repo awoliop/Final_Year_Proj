@@ -1,0 +1,45 @@
+.navbar-admin {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #000000;
+  border-bottom: 1px solid #eaeaea;
+  font-family: "Roboto", sans-serif;
+  font-weight: lighter;
+  position: fixed;
+  width: 100%;
+}
+.navbar-admin .logo {
+  margin: 10px;
+}
+
+.navbar-admin a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin: 0 10px;
+  font-size: 22px;
+  /* font-weight: ; */
+}
+.navbar-admin a:hover {
+  border-bottom: 2px solid orange;
+}
+.logout-button {
+  /* pointer-events: none; Disables click events */
+  cursor: default; /* Changes cursor to default */
+  color: inherit; /* Keeps the text color unchanged */
+  background-color: inherit;
+  border: none;
+  /* border-bottom: 2px solid orange; */
+  color: white;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.2rem;
+  /* margin: 0 10px; */
+  font-size: 20px;
+}
+
+.logout-button:hover {
+  border-bottom: 2px solid orange;
+  background-color: inherit;
+}

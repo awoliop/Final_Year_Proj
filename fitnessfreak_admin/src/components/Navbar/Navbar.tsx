@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import "./Navbar.css";
 import logo from "./logo.png";
+import { ToastContainer, toast } from "react-toastify";
 
 const Navbar = () => {
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
@@ -30,6 +31,29 @@ const Navbar = () => {
       setIsAdminAuthenticated(false);
     }
   };
+  const handleLogout = () => {
+    fetch(process.env.NEXT_PUBLIC_BACKEND_API + "/admin/logout", {
+      method: "POST",
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.ok) {
+          // Clear local session or token
+          localStorage.removeItem("authToken");
+          localStorage.removeItem("refreshToken");
+          setIsAdminAuthenticated(false);
+          // Redirect the user to the login page or homepage
+          window.location.href = "/"; // Replace '/login' with the desired redirect URL
+        } else {
+          toast.error(data.message);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     checkAdminAuthenticated();
@@ -40,7 +64,16 @@ const Navbar = () => {
       <div className="admnlinks">
         {isAdminAuthenticated ? (
           <>
-            <Link href="/pages/addworkout">Add Workout</Link>
+            {/* <Link href="/pages/addworkout">Add Workout</Link> */}
+            <button
+              className="logout-button"
+              onClick={(e) => {
+                e.preventDefault();
+                handleLogout();
+              }}
+            >
+              Logout
+            </button>
           </>
         ) : (
           <>
