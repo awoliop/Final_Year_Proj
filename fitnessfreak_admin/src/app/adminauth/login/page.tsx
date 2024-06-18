@@ -9,17 +9,14 @@ const LoginPage = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch(
-        process.env.NEXT_PUBLIC_BACKEND_API + "/admin/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-          credentials: "include",
-        }
-      );
+      const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_API + "/admin/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+        credentials: "include",
+      });
       const data = await response.json();
       if (data.ok) {
         console.log("Admin logged in Succesfully", data);
@@ -29,7 +26,7 @@ const LoginPage = () => {
             backgroundColor: "white",
           },
         });
-        window.location.href = "/home";
+        window.location.href = "/admin";
       } else {
         console.error("Admin Login In failed", response.statusText);
         toast.error("Admin Login failed", {

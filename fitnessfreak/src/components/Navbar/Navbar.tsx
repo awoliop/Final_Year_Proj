@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import "./Navbar.css";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/fit1.png";
 import Image from "next/image";
 import Link from "next/link";
 import { IoIosBody } from "react-icons/io";
@@ -90,7 +90,9 @@ const NavBar = () => {
   return (
     // <AuthDataProvider>
     <nav>
-      <Link href="/">{/* <Image src={logo} alt="logo" /> */}</Link>
+      <Link href="/">
+        <Image src={logo} alt="logo" height={100} width={100} />
+      </Link>
 
       <Link href="/" onClick={(e) => handleLinkClick(e, "/")}>
         Home

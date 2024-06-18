@@ -1,13 +1,17 @@
 .navbar-admin {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: end;
+  padding-right: 40px;
+  padding-top: 14px;
+  padding-bottom: 14px;
   background-color: #000000;
   border-bottom: 1px solid #eaeaea;
   font-family: "Roboto", sans-serif;
   font-weight: lighter;
   position: fixed;
   width: 100%;
+  /* gap: 2rem; */
 }
 .navbar-admin .logo {
   margin: 10px;
@@ -28,7 +32,7 @@
   /* pointer-events: none; Disables click events */
   cursor: default; /* Changes cursor to default */
   color: inherit; /* Keeps the text color unchanged */
-  background-color: inherit;
+  background-color: transparent !important;
   border: none;
   /* border-bottom: 2px solid orange; */
   color: white;
@@ -37,6 +41,7 @@
   font-size: 1.2rem;
   /* margin: 0 10px; */
   font-size: 20px;
+  border-bottom: 2px solid transparent;
 }
 
 .logout-button:hover {

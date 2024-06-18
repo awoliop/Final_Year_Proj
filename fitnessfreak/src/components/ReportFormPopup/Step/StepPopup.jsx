@@ -185,16 +185,16 @@ const StyledButton = styled("button")(
 `
 );
 
-const SleepPopup = ({ setShowSleepPopup }) => {
+const StepPopup = ({ setShowStepPopup }) => {
   const color = "#ffc20e";
   const [date, setDate] = React.useState(() => dayjs() || null);
   const [time, setTime] = React.useState(() => dayjs() || null);
 
-  const [sleep, setSleep] = useState({ date: "", durationInHrs: "" });
+  const [step, setStep] = useState({ date: "", steps: "" });
 
   const [items, setItems] = useState([]); // Ensure items is an array
 
-  const saveSleep = async () => {
+  const saveStep = async () => {
     let tempdate = date.format("YYYY-MM-DD");
     let temptime = time.format("HH:mm:ss");
     let tempdatetime = tempdate + " " + temptime;
@@ -203,7 +203,7 @@ const SleepPopup = ({ setShowSleepPopup }) => {
 
     try {
       const response = await fetch(
-        process.env.NEXT_PUBLIC_BACKEND_API + "/sleeptrack/addsleepentry",
+        process.env.NEXT_PUBLIC_BACKEND_API + "/steptrack/addstepentry",
         {
           method: "POST",
           headers: {
@@ -212,14 +212,14 @@ const SleepPopup = ({ setShowSleepPopup }) => {
           credentials: "include",
           body: JSON.stringify({
             date: finaldatetime,
-            durationInHrs: sleep.durationInHrs,
+            steps: step.steps,
           }),
         }
       );
       const data = await response.json();
       if (data.ok) {
         toast.success("sleep added successfully");
-        getSleep();
+        getStep();
       } else {
         toast.error("Error in adding sleep");
       }
@@ -229,11 +229,11 @@ const SleepPopup = ({ setShowSleepPopup }) => {
     }
   };
 
-  const getSleep = async () => {
+  const getStep = async () => {
     setItems([]); // Reset items to an empty array
     try {
       const response = await fetch(
-        process.env.NEXT_PUBLIC_BACKEND_API + "/sleeptrack/getsleepbydate",
+        process.env.NEXT_PUBLIC_BACKEND_API + "/steptrack/getstepsbydate",
         {
           method: "POST",
           headers: {
@@ -247,21 +247,21 @@ const SleepPopup = ({ setShowSleepPopup }) => {
       );
       const data = await response.json();
       if (data.ok) {
-        console.log(data.data, "sleep data for date!");
+        console.log(data.data, "steps data for date!");
         setItems(Array.isArray(data.data) ? data.data : []);
         console.log(items); // Ensure the response is an array
       } else {
-        toast.error("Error in getting the Sleep data");
+        toast.error("Error in getting the steps data");
       }
     } catch (error) {
-      toast.error("Error in getting the sleep data");
+      toast.error("Error in getting the steps data");
       console.log(error);
     }
   };
 
-  const deleteSleep = async (item) => {
+  const deleteStep = async (item) => {
     try {
-      fetch(process.env.NEXT_PUBLIC_BACKEND_API + "/sleeptrack/deletesleepentry", {
+      fetch(process.env.NEXT_PUBLIC_BACKEND_API + "/steptrack/deletestepentry", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -275,14 +275,14 @@ const SleepPopup = ({ setShowSleepPopup }) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.ok) {
-            toast.success("Sleep item deleted successfully");
-            getSleep();
+            toast.success("Steps item deleted successfully");
+            getStep();
           } else {
-            toast.error("Error  in deleting the sleep item");
+            toast.error("Error  in deleting the steps item");
           }
         });
     } catch (error) {
-      toast.error("Error in deleting sleep item");
+      toast.error("Error in deleting steps item");
       console.error(error);
     }
   };
@@ -292,7 +292,7 @@ const SleepPopup = ({ setShowSleepPopup }) => {
   };
 
   useEffect(() => {
-    getSleep();
+    getStep();
   }, [date]);
 
   return (
@@ -301,7 +301,7 @@ const SleepPopup = ({ setShowSleepPopup }) => {
         className="close"
         onClick={() => {
           // getSleep();
-          setShowSleepPopup(false);
+          setShowStepPopup(false);
         }}
       >
         <AiOutlineClose />
@@ -320,7 +320,7 @@ const SleepPopup = ({ setShowSleepPopup }) => {
           aria-label="Demo number input"
           placeholder="Type a number…"
           onChange={(e) => {
-            setSleep({ ...sleep, durationInHrs: e.target.value });
+            setStep({ ...step, steps: e.target.value });
           }}
         />
 
@@ -335,7 +335,7 @@ const SleepPopup = ({ setShowSleepPopup }) => {
             />
           </LocalizationProvider>
         </div>
-        <Button variant="contained" color="warning" onClick={saveSleep}>
+        <Button variant="contained" color="warning" onClick={saveStep}>
           save
         </Button>
         <div className="hrline"></div>
@@ -343,11 +343,11 @@ const SleepPopup = ({ setShowSleepPopup }) => {
           {items.map((item, index) => {
             return (
               <div className="item" key={index}>
-                <h3>{item.durationInHrs}</h3>
+                <h3>{item.steps}</h3>
 
                 <Button
                   onClick={() => {
-                    deleteSleep(item);
+                    deleteStep(item);
                   }}
                 >
                   <AiFillDelete />
@@ -361,4 +361,4 @@ const SleepPopup = ({ setShowSleepPopup }) => {
   );
 };
 
-export default SleepPopup;
+export default StepPopup;

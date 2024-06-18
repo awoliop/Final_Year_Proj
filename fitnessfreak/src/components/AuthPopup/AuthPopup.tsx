@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import "./AuthPopup.css";
 import Image from "next/image";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/fit1.png";
 import Input from "@mui/joy/Input";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
@@ -194,10 +194,10 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, loginformData, setL
       {showSignup ? (
         <div className="authform">
           <div className="left">
-            <Image src={logo} alt="Logo" />
+            <Image src={logo} alt="Logo" height={200} width={200} className="image-size" />
           </div>
           <div className="right">
-            <h1>Signup to become a freak</h1>
+            <h1>Signup to become fitter</h1>
             <form action="">
               <Input
                 color="warning"
@@ -364,7 +364,7 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, loginformData, setL
             <Image src={logo} alt="Logo" />
           </div>
           <div className="right">
-            <h1>Login to become a freak</h1>
+            <h1>Login to become fitter</h1>
             <form action="">
               <Input
                 color="warning"

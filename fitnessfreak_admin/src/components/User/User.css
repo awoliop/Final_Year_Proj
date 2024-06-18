@@ -16,3 +16,20 @@
   color: white !important;
   font-size: 18px !important;
 }
+
+.del-buttons:hover {
+  color: inherit; /* Keeps the text color unchanged */
+  background-color: inherit;
+}
+
+.del-buttons {
+  padding: 10px;
+  border-radius: 7px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: red;
+  color: black;
+  font-weight: 700;
+  border: none;
+  font-size: 18px;
+}

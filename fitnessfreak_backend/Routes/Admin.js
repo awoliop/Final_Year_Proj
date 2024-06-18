@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const errorHandler = require("../Middlewares/errorMiddleware");
 const adminTokenHandler = require("../Middlewares/checkAdminToken");
 const User = require("../Models/UserSchema");
+const Workout = require("../Models/WorkoutSchema");
 
 const jwt = require("jsonwebtoken");
 
@@ -106,6 +107,27 @@ router.delete("/users/:id", adminTokenHandler, async (req, res) => {
     res.json(createResponse(true, "User deleted successfully"));
   } catch (err) {
     res.status(500).json(createResponse(false, err.message));
+  }
+});
+
+router.delete("/workouts/:id", adminTokenHandler, async (req, res) => {
+  try {
+    const workout = await Workout.findByIdAndDelete(req.params.id);
+    if (!workout) {
+      return res.status(404).json(createResponse(false, "User not found"));
+    }
+    res.json(createResponse(true, "User deleted successfully"));
+  } catch (err) {
+    res.status(500).json(createResponse(false, err.message));
+  }
+});
+
+router.get("/workouts", adminTokenHandler, async (req, res) => {
+  try {
+    const workouts = await Workout.find({}); // Assuming there is a Workout model imported
+    res.json(createResponse(true, "Workouts fetched successfully", workouts));
+  } catch (err) {
+    res.json(createResponse(false, err.message));
   }
 });
 

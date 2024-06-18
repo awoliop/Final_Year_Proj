@@ -40,29 +40,21 @@ const Addworkout = () => {
     imageFile: null,
   });
 
-  const handleWorkOutChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleWorkOutChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setWorkout({
       ...workout,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleExerciseChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleExerciseChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setExercise({
       ...exercise,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleArrayChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    field: keyof Workout,
-    index: number
-  ) => {
+  const handleArrayChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof Workout, index: number) => {
     const newArray = [...workout[field]];
     newArray[index] = e.target.value;
     setWorkout({
@@ -108,13 +100,10 @@ const Addworkout = () => {
   const uploadImage = async (image: File) => {
     const formData = new FormData();
     formData.append("myimage", image);
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_API}/imageuploadroutes/uploadimage`,
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/imageuploadroutes/uploadimage`, {
+      method: "POST",
+      body: formData,
+    });
     if (response.ok) {
       const data = await response.json();
       console.log("image uploaded successfully!", data);
@@ -126,16 +115,13 @@ const Addworkout = () => {
   };
 
   const checkLogin = async () => {
-    const response = await fetch(
-      process.env.NEXT_PUBLIC_BACKEND_API + "/admin/checklogin",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      }
-    );
+    const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_API + "/admin/checklogin", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
     if (response.ok) {
       console.log("Admin is authenticated!!");
     } else {
@@ -177,17 +163,14 @@ const Addworkout = () => {
       exercises: updatedExercises,
     };
 
-    const response = await fetch(
-      process.env.NEXT_PUBLIC_BACKEND_API + "/workoutplans/workouts",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedWorkout),
-        credentials: "include",
-      }
-    );
+    const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_API + "/workoutplans/workouts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedWorkout),
+      credentials: "include",
+    });
 
     if (response.ok) {
       const data = await response.json();
@@ -229,23 +212,12 @@ const Addworkout = () => {
               />
             </div>
           ))}
-          <button
-            onClick={() => addField("suggestions")}
-            className="add-button"
-          >
+          <button onClick={() => addField("suggestions")} className="add-button">
             {/* <span>AddSuggestions</span> */}
             <span>
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                 <g id="SVGRepo_iconCarrier">
                   <path
                     d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15"
@@ -279,17 +251,9 @@ const Addworkout = () => {
           ))}
           <button onClick={() => addField("cautions")} className="add-button">
             <span>
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                 <g id="SVGRepo_iconCarrier">
                   {" "}
                   <path
@@ -322,22 +286,11 @@ const Addworkout = () => {
               />
             </div>
           ))}
-          <button
-            onClick={() => addField("restrictions")}
-            className="add-button"
-          >
+          <button onClick={() => addField("restrictions")} className="add-button">
             <span>
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                 <g id="SVGRepo_iconCarrier">
                   {" "}
                   <path
@@ -365,29 +318,16 @@ const Addworkout = () => {
                 type="text"
                 value={mandatory}
                 placeholder="Type Mandatories..."
-                onChange={(e) =>
-                  handleArrayChange(e, "mandatoriesPriorToWorkout", index)
-                }
+                onChange={(e) => handleArrayChange(e, "mandatoriesPriorToWorkout", index)}
                 className="input-field"
               />
             </div>
           ))}
-          <button
-            onClick={() => addField("mandatoriesPriorToWorkout")}
-            className="add-button"
-          >
+          <button onClick={() => addField("mandatoriesPriorToWorkout")} className="add-button">
             <span>
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                 <g id="SVGRepo_iconCarrier">
                   {" "}
                   <path
@@ -454,9 +394,7 @@ const Addworkout = () => {
                   onChange={(e) =>
                     setExercise({
                       ...exercise,
-                      instructions: exercise.instructions.map((inst, i) =>
-                        i === index ? e.target.value : inst
-                      ),
+                      instructions: exercise.instructions.map((inst, i) => (i === index ? e.target.value : inst)),
                     })
                   }
                   className="input-field"
@@ -473,17 +411,9 @@ const Addworkout = () => {
               className="add-button"
             >
               <span>
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                  <g
-                    id="SVGRepo_tracerCarrier"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  ></g>
+                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                   <g id="SVGRepo_iconCarrier">
                     {" "}
                     <path
@@ -537,19 +467,12 @@ const Addworkout = () => {
             </p>
             <img
               className="imageDisplay"
-              src={
-                exercise.imageFile
-                  ? URL.createObjectURL(exercise.imageFile)
-                  : exercise.imageURL
-              }
+              src={exercise.imageFile ? URL.createObjectURL(exercise.imageFile) : exercise.imageURL}
               alt="Exercise"
               height={90}
               width={90}
             />
-            <button
-              onClick={() => deleteExerciseFromWorkOut(index)}
-              className="spec-button"
-            >
+            <button onClick={() => deleteExerciseFromWorkOut(index)} className="spec-button">
               Delete
             </button>
           </div>

@@ -127,10 +127,10 @@ const Nutrition = () => {
             <TableHead>
               <StyledTableRow>
                 <StyledTableCell>Meal</StyledTableCell>
-                <StyledTableCell align="left">calories</StyledTableCell>
+                {/* <StyledTableCell align="left">calories</StyledTableCell> */}
                 <StyledTableCell align="left">serving size&nbsp;(g)</StyledTableCell>
                 <StyledTableCell align="left">fat total&nbsp;(g)</StyledTableCell>
-                <StyledTableCell align="left">Protein&nbsp;(g)</StyledTableCell>
+                {/* <StyledTableCell align="left">Protein&nbsp;(g)</StyledTableCell> */}
                 <StyledTableCell align="left">Carbs&nbsp;(g)</StyledTableCell>
                 <StyledTableCell align="left">fiber&nbsp;(g)</StyledTableCell>
                 <StyledTableCell align="left">sugar&nbsp;(g)</StyledTableCell>
@@ -139,10 +139,10 @@ const Nutrition = () => {
             <TableBody>
               <TableRow>
                 <TableCell>{have[0].name}</TableCell>
-                <TableCell>{have[0].calories}</TableCell>
+                {/* <TableCell>{have[0].calories}</TableCell> */}
                 <TableCell>{have[0].fat_total_g}</TableCell>
                 <TableCell>{have[0].fat_total_g}</TableCell>
-                <TableCell>{have[0].protein_g}</TableCell>
+                {/* <TableCell>{have[0].protein_g}</TableCell> */}
                 <TableCell>{have[0].carbohydrates_total_g}</TableCell>
                 <TableCell>{have[0].fiber_g}</TableCell>
                 <TableCell>{have[0].sugar_g}</TableCell>
@@ -156,10 +156,10 @@ const Nutrition = () => {
             <TableHead>
               <TableRow className="TableRow">
                 <StyledTableCell align="left">Meals</StyledTableCell>
-                <StyledTableCell align="left">calories</StyledTableCell>
+                {/* <StyledTableCell align="left">calories</StyledTableCell> */}
                 <StyledTableCell align="left">serving size&nbsp;(g)</StyledTableCell>
                 <StyledTableCell align="left">fat total&nbsp;(g)</StyledTableCell>
-                <StyledTableCell align="left">Protein&nbsp;(g)</StyledTableCell>
+                {/* <StyledTableCell align="left">Protein&nbsp;(g)</StyledTableCell> */}
                 <StyledTableCell align="left">Carbs&nbsp;(g)</StyledTableCell>
                 <StyledTableCell align="left">fiber&nbsp;(g)</StyledTableCell>
                 <StyledTableCell align="left">sugar&nbsp;(g)</StyledTableCell>
@@ -169,10 +169,10 @@ const Nutrition = () => {
               {have.map((food, index) => (
                 <StyledTableRow key={index}>
                   <TableCell className="TableCell">{have[index].name}</TableCell>
-                  <TableCell className="TableCell">{have[index].calories}</TableCell>
+                  {/* <TableCell className="TableCell">{have[index].calories}</TableCell> */}
                   <TableCell className="TableCell">{have[index].fat_total_g}</TableCell>
                   <TableCell className="TableCell">{have[index].fat_total_g}</TableCell>
-                  <TableCell className="TableCell">{have[index].protein_g}</TableCell>
+                  {/* <TableCell className="TableCell">{have[index].protein_g}</TableCell> */}
                   <TableCell className="TableCell">{have[index].carbohydrates_total_g}</TableCell>
                   <TableCell className="TableCell">{have[index].fiber_g}</TableCell>
                   <TableCell className="TableCell">{have[index].sugar_g}</TableCell>

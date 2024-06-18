@@ -11,16 +11,13 @@ const Navbar = () => {
 
   const checkAdminAuthenticated = async () => {
     try {
-      const response = await fetch(
-        process.env.NEXT_PUBLIC_BACKEND_API + "/admin/checklogin",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        }
-      );
+      const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_API + "/admin/checklogin", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
       if (response.ok) {
         setIsAdminAuthenticated(true);
       } else {
@@ -60,7 +57,7 @@ const Navbar = () => {
   }, []);
   return (
     <div className="navbar-admin">
-      <Image src={logo} alt="logo" width={100} className="logo" />
+      {/* <Image src={logo} alt="logo" width={100} className="logo" /> */}
       <div className="admnlinks">
         {isAdminAuthenticated ? (
           <>
@@ -78,8 +75,22 @@ const Navbar = () => {
         ) : (
           <>
             {/* {show this pages when user not authenticated!!} */}
-            <Link href="/adminauth/login">Login</Link>
-            <Link href="/adminauth/register">Signup</Link>
+            <button
+              className="logout-button"
+              onClick={() => {
+                window.location.href = "/adminauth/login";
+              }}
+            >
+              Login
+            </button>
+            <button
+              className="logout-button"
+              onClick={() => {
+                window.location.href = "/adminauth/register";
+              }}
+            >
+              Signup
+            </button>
           </>
         )}
       </div>

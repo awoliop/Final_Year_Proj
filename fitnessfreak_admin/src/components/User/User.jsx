@@ -116,26 +116,28 @@ const User = () => {
         <Table sx={{ minWidth: 650 }} aria-label="customized table">
           <TableHead>
             <StyledTableRow>
-              <StyledTableCell align="left">Name</StyledTableCell>
-              <StyledTableCell align="left">Gender</StyledTableCell>
-              <StyledTableCell align="left">Email</StyledTableCell>
-              <StyledTableCell align="left">Acct. Created</StyledTableCell>
-              <StyledTableCell align="left">Terminate Opt.</StyledTableCell>
+              <StyledTableCell align="center">Name</StyledTableCell>
+              <StyledTableCell align="center">Gender</StyledTableCell>
+              <StyledTableCell align="center">Email</StyledTableCell>
+              <StyledTableCell align="center">Acct. Created</StyledTableCell>
+              <StyledTableCell align="center">Terminate Opt.</StyledTableCell>
             </StyledTableRow>
           </TableHead>
           <TableBody>
             {users.map((user) => (
               <TableRow key={user._id} className="row-elements">
-                <StyledTableCell>{user.name}</StyledTableCell>
-                <StyledTableCell>{user.gender}</StyledTableCell>
-                <StyledTableCell>{user.email}</StyledTableCell>
-                <StyledTableCell>
+                <StyledTableCell align="center">{user.name}</StyledTableCell>
+                <StyledTableCell align="center">{user.gender}</StyledTableCell>
+                <StyledTableCell align="center">{user.email}</StyledTableCell>
+                <StyledTableCell align="center">
                   {formatDistanceToNow(new Date(user.createdAt), {
                     addSuffix: true,
                   })}
                 </StyledTableCell>
-                <StyledTableCell>
-                  <button onClick={() => deleteUser(user._id)}>Delete</button>
+                <StyledTableCell align="center">
+                  <button onClick={() => deleteUser(user._id)} className="del-buttons">
+                    Delete
+                  </button>
                 </StyledTableCell>
               </TableRow>
             ))}

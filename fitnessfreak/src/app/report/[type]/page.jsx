@@ -7,6 +7,7 @@ import showCalorieIntakePopup from "@/components/ReportFormPopup/CalorieIntake/C
 import { usePathname } from "next/navigation";
 import CalorieIntakePopup from "@/components/ReportFormPopup/CalorieIntake/CalorieIntakePopup";
 import SleepPopup from "@/components/ReportFormPopup/Sleep/SleepPopup";
+import StepPopup from "@/components/ReportFormPopup/Step/StepPopup";
 import { toast } from "react-toastify";
 import { title } from "process";
 
@@ -111,19 +112,65 @@ const page = () => {
       } catch (error) {
         console.log(error);
       }
+    } else if (pathname == "/report/Steps") {
+      try {
+        const response = await fetch(
+          process.env.NEXT_PUBLIC_BACKEND_API + "/steptrack/getstepsbylimit",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify({
+              limit: 10,
+            }),
+          }
+        );
+
+        const result = await response.json();
+
+        if (result.ok) {
+          const temp = result.data.map((item) => ({
+            date: item.date,
+            value: item.steps,
+            unit: "m",
+          }));
+
+          const dataForLineChart = temp.map((item) => item.value);
+          console.log(dataForLineChart);
+          const dataForXAxis = temp.map((item) => new Date(item.date).getDate());
+
+          setData({
+            data: dataForLineChart,
+            title: "2 Day sleep ",
+            color: color,
+            xAxis: {
+              data: dataForXAxis,
+              label: "Last 10 Days",
+              scaleType: "time",
+            },
+          });
+        } else {
+          setData([]);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
   const [showCalorieIntakePopup, setShowCalorieIntakePopup] = useState(false);
   const [showSleepPopup, setShowSleepPopup] = useState(false);
+  const [showStepPopup, setShowStepPopup] = useState(false);
   useEffect(() => {
     getDataForS1();
-  }, [showCalorieIntakePopup, showSleepPopup]);
+  }, [showCalorieIntakePopup, showSleepPopup, showStepPopup]);
 
   return (
     <div className="reportpage">
       <div className="s1">
-        {data && (
+        {data ? (
           <LineChart
             sx={{
               "& .MuiChartsAxis-tickContainer .MuiChartsAxis-tickLabel": {
@@ -173,6 +220,8 @@ const page = () => {
             colors={color}
             className="lineCharts"
           />
+        ) : (
+          <div>Loading...</div>
         )}
       </div>
 
@@ -183,6 +232,8 @@ const page = () => {
             setShowCalorieIntakePopup(true);
           } else if (pathname == "/report/Sleep") {
             setShowSleepPopup(true);
+          } else if (pathname == "/report/Steps") {
+            setShowStepPopup(true);
           }
         }}
       >
@@ -193,6 +244,7 @@ const page = () => {
       )}
 
       {showSleepPopup && <SleepPopup setShowSleepPopup={setShowSleepPopup} />}
+      {showStepPopup && <StepPopup setShowStepPopup={setShowStepPopup} />}
     </div>
   );
 };
