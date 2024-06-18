@@ -8,6 +8,9 @@ import { usePathname } from "next/navigation";
 import CalorieIntakePopup from "@/components/ReportFormPopup/CalorieIntake/CalorieIntakePopup";
 import SleepPopup from "@/components/ReportFormPopup/Sleep/SleepPopup";
 import StepPopup from "@/components/ReportFormPopup/Step/StepPopup";
+import WaterPopup from "@/components/ReportFormPopup/Water/WaterPopup";
+import WeightPopup from "@/components/ReportFormPopup/Weight/WeightPopup";
+
 import { toast } from "react-toastify";
 import { title } from "process";
 
@@ -157,20 +160,112 @@ const page = () => {
       } catch (error) {
         console.log(error);
       }
+    } else if (pathname == "/report/Water") {
+      try {
+        const response = await fetch(
+          process.env.NEXT_PUBLIC_BACKEND_API + "/watertrack/getwaterbylimit",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify({
+              limit: 10,
+            }),
+          }
+        );
+
+        const result = await response.json();
+
+        if (result.ok) {
+          const temp = result.data.map((item) => ({
+            date: item.date,
+            value: item.amountInMilliliters,
+            unit: "ml",
+          }));
+
+          const dataForLineChart = temp.map((item) => item.value);
+          console.log(dataForLineChart);
+          const dataForXAxis = temp.map((item) => new Date(item.date).getDate());
+
+          setData({
+            data: dataForLineChart,
+            title: "2 Day sleep ",
+            color: color,
+            xAxis: {
+              data: dataForXAxis,
+              label: "Last 10 Days",
+              scaleType: "time",
+            },
+          });
+        } else {
+          setData([]);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else if (pathname == "/report/Weight") {
+      try {
+        const response = await fetch(
+          process.env.NEXT_PUBLIC_BACKEND_API + "/weighttrack/getweightbylimit",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify({
+              limit: 10,
+            }),
+          }
+        );
+
+        const result = await response.json();
+
+        if (result.ok) {
+          const temp = result.data.map((item) => ({
+            date: item.date,
+            value: item.weight,
+            unit: "m",
+          }));
+
+          const dataForLineChart = temp.map((item) => item.value);
+          console.log(dataForLineChart);
+          const dataForXAxis = temp.map((item) => new Date(item.date).getDate());
+
+          setData({
+            data: dataForLineChart,
+            title: "2 Day sleep ",
+            color: color,
+            xAxis: {
+              data: dataForXAxis,
+              label: "Last 10 Days",
+              scaleType: "Kg",
+            },
+          });
+        } else {
+          setData([]);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
   const [showCalorieIntakePopup, setShowCalorieIntakePopup] = useState(false);
   const [showSleepPopup, setShowSleepPopup] = useState(false);
   const [showStepPopup, setShowStepPopup] = useState(false);
+  const [showWaterPopup, setShowWaterPopup] = useState(false);
+  const [showWeightPopup, setShowWeightPopup] = useState(false);
   useEffect(() => {
     getDataForS1();
-  }, [showCalorieIntakePopup, showSleepPopup, showStepPopup]);
+  }, [showCalorieIntakePopup, showSleepPopup, showStepPopup, showWaterPopup, showWeightPopup]);
 
   return (
     <div className="reportpage">
       <div className="s1">
-        {data ? (
+        {data && (
           <LineChart
             sx={{
               "& .MuiChartsAxis-tickContainer .MuiChartsAxis-tickLabel": {
@@ -220,8 +315,6 @@ const page = () => {
             colors={color}
             className="lineCharts"
           />
-        ) : (
-          <div>Loading...</div>
         )}
       </div>
 
@@ -234,6 +327,10 @@ const page = () => {
             setShowSleepPopup(true);
           } else if (pathname == "/report/Steps") {
             setShowStepPopup(true);
+          } else if (pathname == "/report/Water") {
+            setShowWaterPopup(true);
+          } else if (pathname == "/report/Weight") {
+            setShowWeightPopup(true);
           }
         }}
       >
@@ -245,6 +342,8 @@ const page = () => {
 
       {showSleepPopup && <SleepPopup setShowSleepPopup={setShowSleepPopup} />}
       {showStepPopup && <StepPopup setShowStepPopup={setShowStepPopup} />}
+      {showWaterPopup && <WaterPopup setShowWaterPopup={setShowWaterPopup} />}
+      {showWeightPopup && <WeightPopup setShowWeightPopup={setShowWeightPopup} />}
     </div>
   );
 };

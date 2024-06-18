@@ -92,7 +92,7 @@ const DeleteWorkout = () => {
   };
 
   return (
-    <div style={{ marginBottom: "170px" }}>
+    <div style={{ marginBottom: "170px", marginLeft: "150px" }}>
       <h1 style={{ marginBottom: "20px" }}>Workouts</h1>
       <TableContainer component={Paper} sx={{ maxWidth: 1500 }}>
         <Table sx={{ minWidth: 650 }} aria-label="customized table">

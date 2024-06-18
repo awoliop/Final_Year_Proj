@@ -82,7 +82,10 @@ router.delete("/deleteweightentry", authTokenHandler, async (req, res) => {
   const userId = req.userId;
   const user = await User.findById({ _id: userId });
 
-  user.weight = user.weight.filter((entry) => entry.date !== date);
+  user.weight = user.weight.filter((entry) => {
+    return entry.date.toString() !== new Date(date).toString();
+  });
+  // entry.date !== date);
 
   await user.save();
   res.json(createResponse(true, "Weight entry deleted successfully"));

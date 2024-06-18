@@ -46,6 +46,26 @@ router.post("/register", async (req, res, next) => {
       req.body;
     const existingUser = await User.findOne({ email: email });
 
+    if (
+      !name ||
+      !email ||
+      !password ||
+      !weightInKg ||
+      !heightInCm ||
+      !gender ||
+      !dob ||
+      !goal ||
+      !activityLevel
+    ) {
+      return res.status(400).json(createResponse(false, "Fill all input fields"));
+    }
+    if (heightInCm > 280) {
+      return res.status(400).json(createResponse(false, "height can't exceed 280cm"));
+    }
+    if (heightInCm < 10) {
+      return res.status(400).json(createResponse(false, "height can't be smaller than 10cm"));
+    }
+
     if (existingUser) {
       return res.status(409).json(createResponse(false, "Email already exists"));
     }
@@ -83,6 +103,9 @@ router.post("/login", async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
+    if (!email || !password) {
+      return res.status(400).json(createResponse(false, "All feild are Required"));
+    }
     if (!user) {
       return res.status(400).json(createResponse(false, "Invalid credentials"));
     }

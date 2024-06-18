@@ -60,10 +60,10 @@ const User = () => {
           setUsers(result.data);
           // console.log(result.data);
         } else {
-          console.error("Failed to fetch workouts");
+          console.error("Failed to fetch Users");
         }
       } catch (error) {
-        console.error("Error fetching workouts:", error);
+        console.error("Error fetching User:", error);
       }
     };
 
@@ -94,7 +94,7 @@ const User = () => {
   };
 
   return (
-    <div>
+    <div style={{ marginLeft: "150px" }}>
       <h1 className="users-title">Users</h1>
       {/* <div className="user-list">
         {users.map((user) => (

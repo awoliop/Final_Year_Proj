@@ -275,6 +275,7 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, loginformData, setL
                 placeholder="Goal"
                 size="lg"
                 variant="solid"
+                required
                 onChange={(event: React.SyntheticEvent | null, newValue: string | null) => {
                   setSignupFormData({
                     ...signupformData,
@@ -311,6 +312,8 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, loginformData, setL
                 variant="solid"
                 type="number"
                 placeholder="cm"
+                required
+                // inputMode="numeric"
                 onChange={(e) => {
                   setSignupFormData({
                     ...signupformData,

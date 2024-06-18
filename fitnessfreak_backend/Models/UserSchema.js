@@ -18,12 +18,12 @@ const userSchema = new mongoose.Schema(
     },
     weight: [
       {
-        weight: {
-          type: Number,
-          required: true,
-        },
         date: {
           type: Date,
+          required: true,
+        },
+        weight: {
+          type: Number,
           required: true,
         },
       },
