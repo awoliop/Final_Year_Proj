@@ -458,8 +458,13 @@ const Addworkout = () => {
       <div className="exercises">
         {workout.exercises.map((exercise, index) => (
           <div className="exercise" key={index}>
-            <h2>{exercise.exercise}</h2>
-            <p>Primary Muscle: {exercise.primaryMuscle}</p>
+            <h2>{exercise.exercise.length > 10 ? exercise.exercise.substring(0, 10) + "..." : exercise.exercise}</h2>
+            <p>
+              Primary...:
+              {exercise.primaryMuscle.length > 10
+                ? exercise.primaryMuscle.substring(0, 10) + "..."
+                : exercise.primaryMuscle}
+            </p>
             <p>
               Instructions:{" "}
               {exercise.instructions.join(", ").substring(0, 10) +
