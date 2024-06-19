@@ -194,7 +194,7 @@ const StepPopup = ({ setShowStepPopup }) => {
 
   const [items, setItems] = useState([]); // Ensure items is an array
 
-  const saveStep = async () => {
+  const setGoals = async () => {
     let tempdate = date.format("YYYY-MM-DD");
     let temptime = time.format("HH:mm:ss");
     let tempdatetime = tempdate + " " + temptime;
@@ -335,7 +335,7 @@ const StepPopup = ({ setShowStepPopup }) => {
             />
           </LocalizationProvider>
         </div>
-        <Button variant="contained" color="warning" onClick={saveStep}>
+        <Button variant="contained" color="warning" onClick={setGoals}>
           save
         </Button>
         <div className="hrline"></div>

@@ -117,7 +117,7 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, loginformData, setL
   //     }
   // })
 
-  const handleLogin = () => {
+  const login = () => {
     const username = loginformData.email.split("@")[0];
     const timestamp = new Date().toISOString();
     const data = { value: username, timestamp };
@@ -150,7 +150,7 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, loginformData, setL
         console.log(err);
       });
   };
-  const handleSignup = () => {
+  const setGoals = () => {
     // console.log(process.env.NEXT_PUBLIC_BACKEND_API);
 
     fetch(process.env.NEXT_PUBLIC_BACKEND_API + "/auth/register", {
@@ -342,7 +342,7 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, loginformData, setL
                 className="popup-buttons"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleSignup();
+                  setGoals();
                 }}
               >
                 Signup
@@ -399,7 +399,7 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, loginformData, setL
                 className="popup-buttons"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleLogin();
+                  login();
                 }}
               >
                 Login

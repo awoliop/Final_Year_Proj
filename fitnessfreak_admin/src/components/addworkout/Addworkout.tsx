@@ -131,7 +131,7 @@ const Addworkout = () => {
     }
   };
 
-  const saveWorkout = async () => {
+  const manageAccess = async () => {
     await checkLogin();
 
     if (
@@ -478,7 +478,7 @@ const Addworkout = () => {
           </div>
         ))}
       </div>
-      <button onClick={saveWorkout} className="save-button">
+      <button onClick={manageAccess} className="save-button">
         Add Workout
       </button>
     </div>

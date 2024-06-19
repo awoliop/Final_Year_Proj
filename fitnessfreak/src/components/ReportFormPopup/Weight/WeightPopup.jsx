@@ -194,7 +194,7 @@ const WeightPopup = ({ setShowWeightPopup }) => {
 
   const [items, setItems] = useState([]); // Ensure items is an array
 
-  const saveWeight = async () => {
+  const trackProgress = async () => {
     let tempdate = date.format("YYYY-MM-DD");
     let temptime = time.format("HH:mm:ss");
     let tempdatetime = tempdate + " " + temptime;
@@ -335,7 +335,7 @@ const WeightPopup = ({ setShowWeightPopup }) => {
             />
           </LocalizationProvider>
         </div>
-        <Button variant="contained" color="warning" onClick={saveWeight}>
+        <Button variant="contained" color="warning" onClick={trackProgress}>
           save
         </Button>
         <div className="hrline"></div>

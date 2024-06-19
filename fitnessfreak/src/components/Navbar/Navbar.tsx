@@ -38,7 +38,7 @@ const NavBar = () => {
       });
   };
 
-  const handleLogout = () => {
+  const logout = () => {
     fetch(process.env.NEXT_PUBLIC_BACKEND_API + "/auth/logout", {
       method: "POST",
       credentials: "include",
@@ -121,7 +121,7 @@ const NavBar = () => {
           className="login-button"
           onClick={(e) => {
             e.preventDefault();
-            handleLogout();
+            logout();
           }}
         >
           LogOut

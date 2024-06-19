@@ -70,7 +70,7 @@ const User = () => {
     fetchUsers();
   }, []);
 
-  const deleteUser = async (UserId) => {
+  const manageAccess = async (UserId) => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/admin/users/${UserId}`, {
         method: "DELETE",
@@ -135,7 +135,7 @@ const User = () => {
                   })}
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  <button onClick={() => deleteUser(user._id)} className="del-buttons">
+                  <button onClick={() => manageAccess(user._id)} className="del-buttons">
                     Delete
                   </button>
                 </StyledTableCell>
