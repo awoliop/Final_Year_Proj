@@ -94,7 +94,7 @@ const User = () => {
   };
 
   return (
-    <div style={{ marginLeft: "150px" }}>
+    <div style={{ marginLeft: "150px", marginBottom: "130px" }}>
       <h1 className="users-title">Users</h1>
       {/* <div className="user-list">
         {users.map((user) => (
