@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playwrite+SK:wght@100..400&display=swap");
 .swiper-slide {
   width: 200px;
   height: 200px;
@@ -13,7 +14,7 @@
 }
 
 .swiper-slide .swiper-slide-content {
-  background-color: rgba(0, 0, 0, 0.385);
+  background-color: rgba(0, 0, 0, 0.654);
   color: white;
   position: relative;
   top: 0;
@@ -30,6 +31,9 @@
   font-size: 1.5rem;
   font-weight: 900;
   text-align: center;
+  color: orange;
+
+  font-size: 29px;
 }
 
 .swiper-slide .swiper-slide-content p {
@@ -69,4 +73,41 @@
 
 .acc-swiper :nth-child(1) {
   width: 100% !important;
+}
+
+.features {
+  font-size: 30px;
+  margin: 30px 20px;
+  color: #18f1d2;
+  font-weight: bold;
+}
+
+.banner22 {
+  margin-bottom: 200px;
+}
+
+.filler-text {
+  color: #18f1d2;
+  font-family: "Playwrite SK", cursive;
+  font-weight: 800;
+  font-size: 80px;
+  margin-top: 70px;
+}
+
+.filler-text :nth-child(1) {
+  margin-left: 700px;
+}
+
+.filler-text :nth-child(2) {
+  margin-left: 800px;
+}
+.filler-text :nth-child(3) {
+  margin-left: 900px;
+}
+
+.filler-text hr {
+  /* color: orange; */
+  border: 2.5px solid rgba(255, 166, 0, 0.47);
+  width: 1700px;
+  margin-top: 50px;
 }

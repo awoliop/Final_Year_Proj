@@ -3,6 +3,8 @@ import axios from "axios";
 import { parse } from "path";
 import { useEffect, useState } from "react";
 // import { useAuthData } from "../../hooks/AuthDataContext";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 const AuthPage = (props) => {
   useEffect(() => {
@@ -77,7 +79,16 @@ const AuthPage = (props) => {
 
   return (
     <div className="background">
-      <h1>Loading...</h1>
+      <div
+        style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100vh" }}
+      >
+        <span>
+          <Box sx={{ display: "flex" }}>
+            <CircularProgress />
+          </Box>
+        </span>
+        <span>Loading...</span>
+      </div>
     </div>
   );
 };

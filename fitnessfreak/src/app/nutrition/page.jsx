@@ -19,6 +19,17 @@ import { tableCellClasses } from "@mui/material/TableCell";
 import { styled } from "@mui/material/styles";
 import { parse } from "path";
 import { colors } from "@mui/material";
+import Image from "next/image";
+import logo1 from "@/assets/pdf/fitness bible/download.jpg";
+import logo2 from "@/assets/pdf/nutrition/download (1).jpg";
+import logo3 from "@/assets/pdf/nutrition/download (2).jpg";
+import logo4 from "@/assets/pdf/nutrition/et.jpg";
+import logo5 from "@/assets/pdf/nutrition/download (4).jpg";
+import logo6 from "@/assets/pdf/nutrition/download (5).jpg";
+import logo7 from "@/assets/pdf/nutrition/download (6).jpg";
+import logo8 from "@/assets/pdf/nutrition/download.jpg";
+import logo9 from "@/assets/pdf/nutrition/images.jpg";
+// import pdf1 from "@/assets/pdf/kehe103.pdf";
 const Nutrition = () => {
   const myref = useRef(null);
   const [have, sethave] = useState(
@@ -181,6 +192,112 @@ const Nutrition = () => {
             </TableBody>
           </Table>
         </TableContainer>
+      </div>
+      <div className="title-nutrition">
+        <p>Nutrition and Fitness Materials.</p>
+      </div>
+      <div className="pdf-contianer">
+        <div className="one-pdf">
+          <div className="nutrition-image">
+            <Image src={logo8} alt="Nutrition Pdf" height={270} width={270} />
+          </div>
+          <div>
+            <p></p>
+            <a href="/p/kehe103.pdf" download="kehe103.pdf" className="link-download">
+              Download PDF
+            </a>
+          </div>
+        </div>
+        <div className="one-pdf">
+          <div className="nutrition-image">
+            <Image src={logo2} alt="Nutrition Pdf" height={270} width={270} />
+          </div>
+          <div>
+            <p></p>
+            <a
+              href="/p/fitness-handbook.jpg"
+              download="fitness-handbook.pdf"
+              className="link-download"
+            >
+              Download PDF
+            </a>
+          </div>
+        </div>
+        <div className="one-pdf">
+          <div className="nutrition-image">
+            <Image src={logo3} alt="Nutrition Pdf" height={270} width={270} />
+          </div>
+          <div>
+            <p></p>
+            <a
+              href="/p/fundamentals-of-foodnutrition-and-diet-therapy.pdf"
+              download="fundamentals-of-foodnutrition-and-diet-therapy.pdf"
+              className="link-download"
+            >
+              Download PDF
+            </a>
+          </div>
+        </div>
+        <div className="one-pdf">
+          <div className="nutrition-image">
+            <Image src={logo4} alt="Nutrition Pdf" height={270} width={270} />
+          </div>
+          <div>
+            <p></p>
+            <a
+              href="/p/ln_hew_nutrition_final.pdf"
+              download="ln_hew_nutrition_final.pdf"
+              className="link-download"
+            >
+              Download PDF
+            </a>
+          </div>
+        </div>
+        <div className="one-pdf">
+          <div className="nutrition-image">
+            <Image src={logo5} alt="Nutrition Pdf" height={270} width={270} />
+          </div>
+          <div>
+            <p></p>
+            <a
+              href="/p/Nutrition and health.pdf"
+              download="Nutrition and health.pdf"
+              className="link-download"
+            >
+              Download PDF
+            </a>
+          </div>
+        </div>
+        <div className="one-pdf">
+          <div className="nutrition-image">
+            <Image src={logo6} alt="Nutrition Pdf" height={270} width={270} />
+          </div>
+          <div>
+            <p></p>
+            <a
+              href="/p/Nutrition_and_Fitness.pdf"
+              download="Nutrition_and_Fitness.pdf"
+              className="link-download"
+            >
+              Download PDF
+            </a>
+          </div>
+        </div>
+        <div className="one-pdf">
+          <div className="nutrition-image">
+            <Image src={logo1} alt="Nutrition Pdf" height={270} width={270} />
+          </div>
+          <div>
+            <p></p>
+            <a
+              href="/p/The Men's Fitness Exercise Bible [101 Best Workouts To Build Muscle, Burn Fat And Sculpt Your Best Body Ever].pdf"
+              download="The Men's Fitness Exercise Bible [101 Best Workouts To Build Muscle, Burn Fat And Sculpt Your Best Body Ever].pdf"
+              className="link-download"
+            >
+              Download PDF
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );

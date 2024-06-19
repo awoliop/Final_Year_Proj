@@ -3,8 +3,10 @@
   width: 100%;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 }
 
 .reportpage .editbutton {
@@ -40,4 +42,17 @@
 
 .MuiChartsAxis-bottom {
   color: white !important;
+}
+
+.text-in-chart {
+  color: orange;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.upper-p {
+  color: aquamarine;
+  font-weight: 500;
+  font-size: 24px;
+  margin-bottom: 100px;
 }

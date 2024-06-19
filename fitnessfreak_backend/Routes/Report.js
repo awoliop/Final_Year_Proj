@@ -142,12 +142,12 @@ router.get("/getreport", authTokenHandler, async (req, res) => {
   let goalWater = 4000;
 
   let tempResponse = [
-    {
-      name: "Calorie Intake",
-      value: calorieIntake,
-      goal: maxCalorieIntake,
-      unit: "cal",
-    },
+    // {
+    //   name: "Calorie Intake",
+    //   value: calorieIntake,
+    //   goal: maxCalorieIntake,
+    //   unit: "cal",
+    // },
     {
       name: "Sleep",
       value: sleep,

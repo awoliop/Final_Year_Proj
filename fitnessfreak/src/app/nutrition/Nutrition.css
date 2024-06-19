@@ -89,3 +89,39 @@ h1 {
 .TableCell.Mui-Selected {
   text-align: center;
 }
+
+.pdf-contianer {
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  justify-content: center;
+  gap: 6rem;
+  margin-top: 150px;
+  margin-bottom: 200px;
+}
+.one-pdf {
+  border-radius: 12px;
+  border: none;
+  height: 250px;
+  /* overflow: hidden; */
+}
+
+.one-pdf a {
+  background-color: rgb(237, 161, 67) !important;
+  padding: 10px !important;
+  color: black !important;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+  /* margin: auto; */
+  margin-left: 60px;
+  border-radius: 7px;
+}
+
+.title-nutrition p {
+  font-size: 30px;
+  font-weight: 500;
+  margin-left: 135px;
+  color: orange;
+  margin-top: 50px;
+}

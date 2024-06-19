@@ -15,73 +15,77 @@ const HomeBanner2 = () => {
   const getworkouts = async () => {
     let data: any = [
       {
-        type: "Chest",
+        type: "community engagment!",
         imageUrl:
-          "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
-        durationInMin: 30,
+          "https://img.freepik.com/free-vector/illustrated-people-with-social-network_53876-37263.jpg?w=826&t=st=1718769643~exp=1718770243~hmac=40680e507bd3c56bc11da55513635d1da83c61318d87f6936a8a572c88757e65",
+        // durationInMin: ,
       },
       {
-        type: "Abs",
+        type: "Nutrition Volt",
         imageUrl:
-          "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YWJzJTIwd29ya291dHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+          "https://img.freepik.com/free-vector/fruit-salad-bowls_23-2148481259.jpg?t=st=1718769945~exp=1718773545~hmac=a8037719a18022ab6761b63b9ed43dad57d159c578936f1d260ec803894c4269&w=826",
         durationInMin: 90,
       },
       {
-        type: "Shoulder",
+        type: "Workouts",
         imageUrl:
-          "https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
-        durationInMin: 40,
-      },
-      {
-        type: "Back",
-        imageUrl:
-          "https://images.unsplash.com/photo-1603287681836-b174ce5074c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmFjayUyMHdvcmtvdXR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+          "https://img.freepik.com/premium-photo/portrait-young-sporty-woman-starting-block-race-isolated-white-studio-background-sprinter-jogger-exercise-workout-fitness-training-jogging-concept-profile_489646-5896.jpg?w=1380",
         durationInMin: 70,
       },
       {
-        type: "Biceps",
+        type: "AI Assitant",
         imageUrl:
-          "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
+          "https://img.freepik.com/free-vector/hand-drawn-ai-alignment-illustration_52683-156464.jpg?t=st=1718770073~exp=1718773673~hmac=42af5feb0f73797a356da89ec400c6b5c49958b5fe632fb5cf292cac4fdf6055&w=826",
+        durationInMin: 40,
+      },
+      {
+        type: "Routines",
+        imageUrl:
+          "https://img.freepik.com/premium-photo/sports-things-sportsman-violet_118454-4728.jpg?w=1060",
         durationInMin: 50,
       },
       {
-        type: "Triceps",
+        type: "Nutrition Materials",
         imageUrl:
-          "https://images.unsplash.com/photo-1530822847156-5df684ec5ee1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dHJpY2Vwc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+          "https://img.freepik.com/free-photo/front-view-copybooks-pens-colorful-pencils-mask-spray-blue-surface_140725-63652.jpg?t=st=1718770480~exp=1718774080~hmac=7ffe15a43cf8a3872ffe21af69a511f4cef9b3a07e17ce09fefde10a79a00229&w=1380",
         durationInMin: 60,
       },
 
-      {
-        type: "Legs",
-        imageUrl:
-          "https://images.unsplash.com/photo-1434608519344-49d77a699e1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bGVnJTIwd29ya291dHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
-        durationInMin: 80,
-      },
+      // {
+      //   type: "Legs",
+      //   imageUrl:
+      //     "https://images.unsplash.com/photo-1434608519344-49d77a699e1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bGVnJTIwd29ya291dHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+      //   durationInMin: 80,
+      // },
 
-      {
-        type: "Cardio",
-        imageUrl:
-          "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Y2FyZGlvfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
-        durationInMin: 100,
-      },
-      {
-        type: "Forearms",
-        imageUrl:
-          "https://images.unsplash.com/photo-1591940742878-13aba4b7a34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9yZWFybXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
-        durationInMin: 110,
-      },
+      // {
+      //   type: "Cardio",
+      //   imageUrl:
+      //     "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Y2FyZGlvfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
+      //   durationInMin: 100,
+      // },
+      // {
+      //   type: "Forearms",
+      //   imageUrl:
+      //     "https://images.unsplash.com/photo-1591940742878-13aba4b7a34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9yZWFybXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+      //   durationInMin: 110,
+      // },
     ];
     setWorkouts(data);
   };
   React.useEffect(() => {
     getworkouts();
   }, []);
+
   return (
-    <div>
+    <div className="banner22">
       <h1 className="fira-sans-condensed-extrabold-italic">
         <span className="first-letter">F</span>itness & <span className="second-letter">N</span>
         utrition
       </h1>
+      <div>
+        <p className="features">Features we have included for you!!</p>
+      </div>
       <Swiper
         slidesPerView={1}
         spaceBetween={10}
@@ -112,21 +116,24 @@ const HomeBanner2 = () => {
                 <div
                   className="swiper-slide"
                   style={{
-                    backgroundImage: `url(${item.imageUrl})`,
-                  }}
-                  onClick={() => {
-                    window.location.href = `/workout/${item.type}`;
+                    background: `url(${item.imageUrl}) no-repeat center center`,
+                    backgroundSize: "cover",
                   }}
                 >
                   <div className="swiper-slide-content">
                     <h2>{item.type}</h2>
-                    <p>{item.durationInMin} min</p>
                   </div>
                 </div>
               </SwiperSlide>
             );
           })}
       </Swiper>
+      <div className="filler-text">
+        <div>back</div>
+        <div>to</div>
+        <div>results!</div>
+        <hr />
+      </div>
     </div>
   );
 };

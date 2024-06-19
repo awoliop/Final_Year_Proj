@@ -6,7 +6,8 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Image from "next/image";
-
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 const Page = ({ params }) => {
   const [routines, setRoutines] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -22,6 +23,7 @@ const Page = ({ params }) => {
         },
       });
       const data = await response.json();
+      console.log(data.data);
       if (data.ok) {
         setRoutines(data.data);
 
@@ -52,7 +54,16 @@ const Page = ({ params }) => {
   }, [routines, params.id]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <span>
+          <Box sx={{ display: "flex" }}>
+            <CircularProgress />
+          </Box>
+        </span>
+        <span>Loading...</span>
+      </div>
+    );
   }
 
   if (!routines) {

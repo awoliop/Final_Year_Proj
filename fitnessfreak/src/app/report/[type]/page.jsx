@@ -10,6 +10,7 @@ import SleepPopup from "@/components/ReportFormPopup/Sleep/SleepPopup";
 import StepPopup from "@/components/ReportFormPopup/Step/StepPopup";
 import WaterPopup from "@/components/ReportFormPopup/Water/WaterPopup";
 import WeightPopup from "@/components/ReportFormPopup/Weight/WeightPopup";
+import WorkoutPopup from "@/components/ReportFormPopup/Workout/WorkoutPopup";
 
 import { toast } from "react-toastify";
 import { title } from "process";
@@ -24,6 +25,7 @@ const page = () => {
     width: 700,
   };
   const [data, setData] = useState(null);
+  // const [render, setRender] = useState(null);
 
   const getDataForS1 = async () => {
     if (pathname === "/report/Calorie%20Intake") {
@@ -241,6 +243,53 @@ const page = () => {
             xAxis: {
               data: dataForXAxis,
               label: "Last 10 Days",
+              scaleType: "min",
+            },
+          });
+        } else {
+          setData([]);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else if (pathname == "/report/Workout") {
+      try {
+        const response = await fetch(
+          process.env.NEXT_PUBLIC_BACKEND_API + "/workouttrack/getworkoutsbylimit",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify({
+              limit: 10,
+            }),
+          }
+        );
+
+        const result = await response.json();
+
+        console.log(result.data);
+
+        if (result.ok) {
+          const temp = result.data.map((item) => ({
+            date: item.date,
+            value: item.durationInMinutes,
+            unit: "min",
+          }));
+
+          const dataForLineChart = temp.map((item) => item.value);
+          console.log(dataForLineChart);
+          const dataForXAxis = temp.map((item) => new Date(item.date).getDate());
+
+          setData({
+            data: dataForLineChart,
+            title: "2 Day sleep ",
+            color: color,
+            xAxis: {
+              data: dataForXAxis,
+              label: "Last 10 Days",
               scaleType: "Kg",
             },
           });
@@ -258,12 +307,23 @@ const page = () => {
   const [showStepPopup, setShowStepPopup] = useState(false);
   const [showWaterPopup, setShowWaterPopup] = useState(false);
   const [showWeightPopup, setShowWeightPopup] = useState(false);
+  const [showWorkoutPopup, setShowWorkoutPopup] = useState(false);
   useEffect(() => {
     getDataForS1();
-  }, [showCalorieIntakePopup, showSleepPopup, showStepPopup, showWaterPopup, showWeightPopup]);
+  }, [
+    showCalorieIntakePopup,
+    showSleepPopup,
+    showStepPopup,
+    showWaterPopup,
+    showWeightPopup,
+    showWorkoutPopup,
+  ]);
 
   return (
     <div className="reportpage">
+      <div>
+        <p className="upper-p">Track various aspects of your wellbeing</p>
+      </div>
       <div className="s1">
         {data && (
           <LineChart
@@ -317,7 +377,9 @@ const page = () => {
           />
         )}
       </div>
-
+      <div className="text-in-chart">
+        <p>Graphcal Representation of you data over the past few days!</p>
+      </div>
       <button
         className="editbutton"
         onClick={() => {
@@ -331,6 +393,8 @@ const page = () => {
             setShowWaterPopup(true);
           } else if (pathname == "/report/Weight") {
             setShowWeightPopup(true);
+          } else if (pathname == "/report/Workout") {
+            setShowWorkoutPopup(true);
           }
         }}
       >
@@ -339,11 +403,11 @@ const page = () => {
       {showCalorieIntakePopup && (
         <CalorieIntakePopup setShowCalorieIntakePopup={setShowCalorieIntakePopup} />
       )}
-
       {showSleepPopup && <SleepPopup setShowSleepPopup={setShowSleepPopup} />}
       {showStepPopup && <StepPopup setShowStepPopup={setShowStepPopup} />}
       {showWaterPopup && <WaterPopup setShowWaterPopup={setShowWaterPopup} />}
       {showWeightPopup && <WeightPopup setShowWeightPopup={setShowWeightPopup} />}
+      {showWorkoutPopup && <WorkoutPopup setShowWorkoutPopup={setShowWorkoutPopup} />}
     </div>
   );
 };

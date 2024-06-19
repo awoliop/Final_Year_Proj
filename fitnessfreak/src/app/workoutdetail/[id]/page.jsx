@@ -7,7 +7,8 @@ import { RiErrorWarningLine } from "react-icons/ri";
 import { RxDividerVertical } from "react-icons/rx";
 import { SlActionRedo } from "react-icons/sl";
 import { IoIosArrowForward } from "react-icons/io";
-
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 const page = ({ params }) => {
   const [selected, setSeleceted] = useState([]);
   const id = params.id;
@@ -50,7 +51,21 @@ const page = ({ params }) => {
   return (
     <div className="bigger-contianer">
       {isLoading == true ? (
-        <div>Loading...</div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100vh",
+          }}
+        >
+          <span>
+            <Box sx={{ display: "flex" }}>
+              <CircularProgress />
+            </Box>
+          </span>
+          <span>Loading...</span>
+        </div>
       ) : isLoading == false ? (
         <div>
           {selected.map((item, index) => {
