@@ -15,7 +15,7 @@ const page = ({ params }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [imageIndex, setImageIndex] = useState(0);
 
-  const fetchWorkout = async (passedId) => {
+  const ViewExerciseDetail = async (passedId) => {
     try {
       setIsLoading(true);
       const response = await fetch(
@@ -37,7 +37,7 @@ const page = ({ params }) => {
   };
 
   useEffect(() => {
-    fetchWorkout(id);
+    ViewExerciseDetail(id);
   }, []);
 
   useEffect(() => {

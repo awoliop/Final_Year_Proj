@@ -22,7 +22,7 @@ const AuthPage = (props) => {
     //   }
     // };
 
-    const handleLogin = async () => {
+    const participateInCommunity = async () => {
       function getSingleWordLocalStorageItem() {
         const regex = /^[a-zA-Z0-9]+$/; // Define your regex pattern
         let mostRecentTimestamp = 0;
@@ -71,10 +71,7 @@ const AuthPage = (props) => {
         .catch((error) => console.error("Error authenticating:", error));
     };
 
-    // Call fetchEmailPart function
-    // fetchEmailPart();
-    // Call handleLogin function
-    handleLogin();
+    participateInCommunity();
   }, []);
 
   return (
