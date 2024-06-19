@@ -193,7 +193,7 @@ const Addworkout = () => {
       <input
         type="text"
         name="routineID"
-        placeholder="Type Routine Name (No whitespace)"
+        placeholder="Type Routine Name"
         value={workout.routineID}
         onChange={handleWorkOutChange}
         className="input-field"

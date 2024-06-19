@@ -72,6 +72,9 @@ const Page = ({ params }) => {
 
   return (
     <div>
+      <div className="routinrID-div">
+        <p>{theRoutine.routineID}</p>
+      </div>
       <div className="hold-accordion">
         {theRoutine.exercises && theRoutine.exercises.length > 0 ? (
           theRoutine.exercises.map((exercise, index) => (
@@ -121,6 +124,62 @@ const Page = ({ params }) => {
         ) : (
           <div>No exercises available.</div>
         )}
+      </div>
+      <div className="text-based">
+        <div className="acc-instructions-detail section-in-div">
+          <p id="acc-instruction-title" className="static-primary-muslcle">
+            Restrictions
+          </p>
+          <div>
+            {theRoutine.restrictions.map((restriction, index) => (
+              <div key={index} className="acc-instructions">
+                <div>➤</div>
+                <div>{restriction}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="acc-instructions-detail second-section-in-div">
+          <p id="acc-instruction-title" className="static-primary-muslcle">
+            Mandatories
+          </p>
+          <div>
+            {theRoutine.mandatoriesPriorToWorkout.map((mandy, index) => (
+              <div key={index} className="acc-instructions">
+                <div>➤</div>
+                <div>{mandy}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="text-based">
+        <div className="acc-instructions-detail section-in-divs">
+          <p id="acc-instruction-title" className="static-primary-muslcle">
+            Cautions
+          </p>
+          <div>
+            {theRoutine.cautions.map((caution, index) => (
+              <div key={index} className="acc-instructions">
+                <div>➤</div>
+                <div>{caution}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="acc-instructions-detail second-section-in-divs">
+          <p id="acc-instruction-title" className="static-primary-muslcle">
+            Suggestions
+          </p>
+          <div>
+            {theRoutine.suggestions.map((suggestion, index) => (
+              <div key={index} className="acc-instructions">
+                <div>➤</div>
+                <div>{suggestion}</div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

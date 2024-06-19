@@ -53,7 +53,7 @@ const Page = ({ params }) => {
 
   useEffect(() => {
     if (routines.length > 0) {
-      const foundRoutine = routines.find((item) => item.routineID === params.id);
+      const foundRoutine = routines.find((item) => item.RoutineID === params.id);
 
       console.log(foundRoutine);
       setRoutine(foundRoutine);
