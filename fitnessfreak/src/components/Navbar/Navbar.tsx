@@ -112,8 +112,8 @@ const NavBar = () => {
       <Link href="/chat" onClick={(e) => handleLinkClick(e, "/chat")}>
         Community
       </Link>
-      <Link href="/about" onClick={(e) => handleLinkClick(e, "/about")}>
-        About Us
+      <Link href="/contactus" onClick={(e) => handleLinkClick(e, "/contactus")}>
+        Contact Us
       </Link>
 
       {isloggedin ? (

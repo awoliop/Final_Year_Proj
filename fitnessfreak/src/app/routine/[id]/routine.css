@@ -91,3 +91,59 @@
 .static-primary-muslcle {
   color: #05d3d8;
 }
+
+.routinrID-div {
+  margin-top: 50px;
+  font-size: 38px;
+  font-weight: 500;
+  color: orange;
+  margin-left: 190px;
+}
+
+.text-based {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 5rem;
+  margin-left: 190px;
+  margin-top: 30px;
+  margin-bottom: 100px;
+  flex-wrap: wrap;
+}
+
+.text-based .upperdivs {
+  border: 2px solid rgba(255, 166, 0, 0.078);
+  width: 300px;
+  padding: 20px;
+  border-radius: 12px;
+  /* color: orange; */
+  background-color: rgba(255, 166, 0, 0.07);
+  font-size: 18px;
+}
+/* 
+.upperdivs div {
+  display: flex;
+} */
+
+.innerdivs {
+  display: flex;
+  flex-direction: row;
+}
+
+.section-in-div,
+.second-section-in-div {
+  border-radius: 12px !important;
+  min-height: 250px;
+  background-color: rgba(255, 0, 0, 0.086);
+  border: 1px solid rgba(255, 0, 0, 0.231) !important;
+  width: 710px;
+}
+
+.section-in-divs,
+.second-section-in-divs {
+  border-radius: 12px !important;
+  min-height: 250px;
+  background-color: rgba(255, 166, 0, 0.089);
+  border: 1px solid rgba(255, 166, 0, 0.104) !important;
+  width: 710px;
+}

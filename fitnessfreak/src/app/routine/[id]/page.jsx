@@ -30,7 +30,7 @@ const Page = ({ params }) => {
   const fetchPopularRoutines = async () => {
     try {
       const response = await fetch(
-        "https://raw.githubusercontent.com/awoliop/PopularRoutines/6d5b0fe022917ad3eed8d56877914e043f9497af/PopularRoutines.json"
+        "https://raw.githubusercontent.com/awoliop/PopularRoutines/9f640c0878ec13512d164e79c5b9aa13829d4dc2/PopularRoutines.json"
       );
       const data = await response.json();
       setRoutines(data);
@@ -44,63 +44,16 @@ const Page = ({ params }) => {
     return workouts.filter((item) => item.id === RoutineContentElement);
   };
 
-  // const adminadded = () => {
-  //   try {
-  //     // Fetching workouts from the backend API
-  //     fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/workoutplans/workouts`, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         console.log(data);
-
-  //         if (data.ok) {
-  //           // Handle successful response
-  //           console.log("Workouts fetched successfully:", data.data);
-  //         } else {
-  //           // Handle error response
-  //           console.error("Error fetching workouts:", data.message);
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         console.error("Error fetching workouts:", err);
-  //       });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-  // const fetchAdminWorkouts = async () => {
-  //   try {
-  //     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/workoutplans/workouts`, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     const data = await response.json();
-  //     if (data.ok) {
-  //       setAdminWorkouts(data.data);
-  //       console.log("Workouts fetched successfully:", data.data);
-  //     } else {
-  //       console.error("Error fetching workouts:", data.message);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching workouts:", error);
-  //   }
-  // };
-
   useEffect(() => {
-    // adminadded();
     fetchPopularRoutines();
     fetchWorkouts();
   }, [params.id]);
 
   useEffect(() => {
     if (routines.length > 0) {
-      const foundRoutine = routines.find((item) => item.RoutineID === params.id);
+      const foundRoutine = routines.find((item) => item.routineID === params.id);
+
+      console.log(foundRoutine);
       setRoutine(foundRoutine);
       setIsLoading(false);
     }
@@ -113,10 +66,9 @@ const Page = ({ params }) => {
   return (
     <div>
       <div>
-        {/* <div>
-          <h2>{routine ? routine.RoutineID : "Loading..."}</h2>
-          <p></p>
-        </div> */}
+        <div className="routinrID-div">
+          <p>{routine.RoutineID}</p>
+        </div>
         <div className="hold-accordion">
           {routine.RoutineContent ? (
             routine.RoutineContent.map((item, index) => {
@@ -165,6 +117,66 @@ const Page = ({ params }) => {
           ) : (
             <div>No content available.</div>
           )}
+        </div>
+        <div className="text-based">
+          <div className="acc-instructions-detail section-in-div">
+            <p id="acc-instruction-title" className="static-primary-muslcle">
+              Restrictions
+            </p>
+            <div>
+              {routine.Restrictions.map((restriction, index) => (
+                <div key={index} className="acc-instructions">
+                  <div>➤</div>
+                  <div>{restriction}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="acc-instructions-detail second-section-in-div">
+            <p id="acc-instruction-title" className="static-primary-muslcle">
+              Mandatories
+            </p>
+            <div>
+              {routine.Mandatories.map((mandy, index) => (
+                <div key={index} className="acc-instructions">
+                  <div>➤</div>
+                  <div>{mandy}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="text-based">
+          <div className="acc-instructions-detail section-in-divs">
+            <p id="acc-instruction-title" className="static-primary-muslcle">
+              Cautions
+            </p>
+            <div>
+              {routine.Cautions.map((caution, index) => (
+                <div key={index} className="acc-instructions">
+                  <div>➤</div>
+                  <div>{caution}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="acc-instructions-detail second-section-in-divs">
+            <p id="acc-instruction-title" className="static-primary-muslcle">
+              Suggestions
+            </p>
+            <div>
+              {routine.Suggestions.map((suggestion, index) => (
+                <div key={index} className="acc-instructions">
+                  <div>➤</div>
+                  <div>{suggestion}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className="cautions"></div>
+          <div className="suggestions"></div>
         </div>
       </div>
     </div>

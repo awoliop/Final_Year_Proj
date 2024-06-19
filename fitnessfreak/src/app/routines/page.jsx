@@ -69,23 +69,10 @@ const page = () => {
         </div>
         <div className="card-container">
           {adminWorkouts.map((item, index) => (
-            <Link href={"/adminroutine/" + item.routineID} className="links" key={index}>
+            <Link href={"/adminroutine/" + item._id} className="links" key={index}>
               <Card routineName={item.routineID} />
             </Link>
           ))}
-        </div>
-      </div>
-      <hr />
-      <div className="custome-routines">
-        <div className="routine-title">
-          <h1>My Routines</h1>
-        </div>
-        <div className="card-container">
-          <div className="card-containers">
-            <Card />
-            <Card />
-            <AddCard />
-          </div>
         </div>
       </div>
     </div>

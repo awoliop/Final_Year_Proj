@@ -1,7 +1,7 @@
 .navbar-admin {
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: center;
   padding-right: 40px;
   padding-top: 14px;
   padding-bottom: 14px;
@@ -12,6 +12,10 @@
   position: fixed;
   width: 100%;
   /* gap: 2rem; */
+}
+
+.navbar-admin div {
+  justify-content: start;
 }
 .navbar-admin .logo {
   margin: 10px;
@@ -46,5 +50,5 @@
 
 .logout-button:hover {
   border-bottom: 2px solid orange;
-  background-color: inherit;
+  background-color: transparent;
 }

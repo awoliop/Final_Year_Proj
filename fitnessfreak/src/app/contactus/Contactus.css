@@ -1,0 +1,38 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+p,
+label {
+  color: orange !important;
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 30px;
+}
+
+.button {
+  color: black;
+  font-weight: bold;
+}
+
+input {
+  font-weight: 32px;
+  background-color: rgba(255, 166, 0, 0.093);
+  border: 1px solid rgba(0, 255, 255, 0.196);
+  color: white;
+}
+
+textarea {
+  color: white;
+  font-weight: 22px;
+  background-color: rgba(255, 166, 0, 0.093);
+  border: 1px solid rgba(0, 255, 255, 0.196);
+}

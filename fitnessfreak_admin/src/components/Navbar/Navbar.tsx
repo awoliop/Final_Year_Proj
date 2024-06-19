@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import "./Navbar.css";
-import logo from "./logo.png";
+import logo from "@/assets/fit1.png";
 import { ToastContainer, toast } from "react-toastify";
 
 const Navbar = () => {
@@ -42,7 +42,7 @@ const Navbar = () => {
           localStorage.removeItem("refreshToken");
           setIsAdminAuthenticated(false);
           // Redirect the user to the login page or homepage
-          window.location.href = "/"; // Replace '/login' with the desired redirect URL
+          window.location.href = "/adminauth/login"; // Replace '/login' with the desired redirect URL
         } else {
           toast.error(data.message);
         }
@@ -57,7 +57,9 @@ const Navbar = () => {
   }, []);
   return (
     <div className="navbar-admin">
-      {/* <Image src={logo} alt="logo" width={100} className="logo" /> */}
+      <div>
+        <Image src={logo} alt="logo" width={100} className="logo" />
+      </div>
       <div className="admnlinks">
         {isAdminAuthenticated ? (
           <>
