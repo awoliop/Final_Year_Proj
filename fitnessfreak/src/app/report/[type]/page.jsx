@@ -27,7 +27,7 @@ const page = () => {
   const [data, setData] = useState(null);
   // const [render, setRender] = useState(null);
 
-  const getDataForS1 = async () => {
+  const visualizeProgress = async () => {
     if (pathname === "/report/Calorie%20Intake") {
       try {
         const response = await fetch(
@@ -309,7 +309,7 @@ const page = () => {
   const [showWeightPopup, setShowWeightPopup] = useState(false);
   const [showWorkoutPopup, setShowWorkoutPopup] = useState(false);
   useEffect(() => {
-    getDataForS1();
+    visualizeProgress();
   }, [
     showCalorieIntakePopup,
     showSleepPopup,

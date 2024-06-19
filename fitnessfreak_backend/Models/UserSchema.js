@@ -54,12 +54,6 @@ const userSchema = new mongoose.Schema(
     },
     calorieIntake: [
       {
-        // item,
-        // date,
-        // quantity,
-        // quantitytype,
-        // calorieIntake:
-
         item: {
           type: String,
           required: true,

@@ -23,7 +23,7 @@ const page = () => {
     }
   };
 
-  const fetchAdminWorkouts = async () => {
+  const accessRoutines = async () => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/workoutplans/workouts`, {
         method: "GET",
@@ -44,7 +44,7 @@ const page = () => {
   };
 
   useEffect(() => {
-    fetchAdminWorkouts();
+    accessRoutines();
     fetchPopularRoutines();
   }, []);
 
