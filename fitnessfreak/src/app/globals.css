@@ -10,7 +10,9 @@
 }
 
 body {
-  background-color: #020d1d;
+  /* background-image: url("https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg?cs=srgb&dl=pexels-rovenimages-com-344613-949587.jpg&fm=jpg") !important; */
+  background-image: url("/assets/bgg.svg");
+  background-size: 100%;
   color: white;
   font-family: "Rajdhani", sans-serif !important;
 }
