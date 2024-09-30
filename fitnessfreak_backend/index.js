@@ -3,7 +3,7 @@ const app = express();
 
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const PORT = 8000;
+
 const cookieParser = require("cookie-parser");
 
 const authRoutes = require("./Routes/Auth");
@@ -21,6 +21,7 @@ const workoutTrackRoutes = require("./Routes/WorkoutTrack");
 const workoutRoutes = require("./Routes/WorkoutPlans");
 const reportRoutes = require("./Routes/Report");
 
+const PORT = process.env.PORT || 8000;
 require("dotenv").config();
 require("./db");
 

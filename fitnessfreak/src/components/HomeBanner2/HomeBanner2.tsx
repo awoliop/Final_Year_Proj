@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./HomeBanner2.css";
 
@@ -50,26 +50,6 @@ const HomeBanner2 = () => {
           "https://img.freepik.com/free-photo/front-view-copybooks-pens-colorful-pencils-mask-spray-blue-surface_140725-63652.jpg?t=st=1718770480~exp=1718774080~hmac=7ffe15a43cf8a3872ffe21af69a511f4cef9b3a07e17ce09fefde10a79a00229&w=1380",
         durationInMin: 60,
       },
-
-      // {
-      //   type: "Legs",
-      //   imageUrl:
-      //     "https://images.unsplash.com/photo-1434608519344-49d77a699e1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bGVnJTIwd29ya291dHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
-      //   durationInMin: 80,
-      // },
-
-      // {
-      //   type: "Cardio",
-      //   imageUrl:
-      //     "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Y2FyZGlvfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
-      //   durationInMin: 100,
-      // },
-      // {
-      //   type: "Forearms",
-      //   imageUrl:
-      //     "https://images.unsplash.com/photo-1591940742878-13aba4b7a34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9yZWFybXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
-      //   durationInMin: 110,
-      // },
     ];
     setWorkouts(data);
   };

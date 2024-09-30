@@ -8,7 +8,6 @@ import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import { AiFillDelete, AiOutlineClose } from "react-icons/ai";
 import dayjs from "dayjs";
-
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
@@ -424,5 +423,3 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, loginformData, setL
 };
 
 export default AuthPopup;
-
-// 40 min into  day-4

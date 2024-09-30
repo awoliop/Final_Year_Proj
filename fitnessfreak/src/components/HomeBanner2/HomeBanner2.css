@@ -56,11 +56,12 @@
   margin: auto;
   color: #000a15 !important;
   text-align: center;
-  color: #ffc20e;
+  color: #ffc20e !important;
 }
 
 .first-letter {
   font-size: 135px;
+  color: #ffc20e;
 }
 
 .second-letter {
