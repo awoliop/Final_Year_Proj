@@ -18,7 +18,7 @@ if (typeof window !== "undefined" && !window.nluxSimulator) {
     var _nativeTextAreaValueSetter = Object.getOwnPropertyDescriptor(
       window.HTMLTextAreaElement.prototype,
       "value"
-    ).set;
+    )?.set;
 
     return {
       get simulatorEnabled() {
@@ -40,12 +40,11 @@ if (typeof window !== "undefined" && !window.nluxSimulator) {
       },
       onPromptInputDetected: (promptInput: HTMLTextAreaElement) => {
         _promptInput = promptInput;
-        _setInputValue = (value /* string */) => {
-          if (_nativeTextAreaValueSetter) {
+        _setInputValue = (value: string) => {
+          if (_nativeTextAreaValueSetter && _promptInput) {
             _nativeTextAreaValueSetter.call(_promptInput, value);
+            _promptInput.dispatchEvent(new Event("input", { bubbles: true }));
           }
-
-          _promptInput.dispatchEvent(new Event("input", { bubbles: true }));
         };
 
         nluxSimulator.checkForPromptSimulation();
@@ -83,7 +82,7 @@ if (typeof window !== "undefined" && !window.nluxSimulator) {
         };
 
         const typeNextChar = () => {
-          if (!nluxSimulator.simulatorEnabled) {
+          if (!nluxSimulator.simulatorEnabled || !promptToType || !_promptInput) {
             return;
           }
 
