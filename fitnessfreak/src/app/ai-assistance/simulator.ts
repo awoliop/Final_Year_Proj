@@ -20,6 +20,10 @@ if (typeof window !== "undefined" && !window.nluxSimulator) {
       "value"
     )?.set;
 
+    if (!_nativeTextAreaValueSetter) {
+      console.error("Failed to get native textarea value setter");
+    }
+
     return {
       get simulatorEnabled() {
         return _simulatorEnabled;
