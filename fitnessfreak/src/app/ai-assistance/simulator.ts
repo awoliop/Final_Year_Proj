@@ -1,3 +1,10 @@
+// Extend the Window interface to include nluxSimulator
+declare global {
+  interface Window {
+    nluxSimulator: any;
+  }
+}
+
 // JavaScript code to simulate typing in the composer of the chatbot
 // Use a conditional declaration to prevent redeclaration
 if (typeof window !== "undefined" && !window.nluxSimulator) {
@@ -100,7 +107,7 @@ if (typeof window !== "undefined" && !window.nluxSimulator) {
   })();
 
   // Attach nluxSimulator to the window object
-  (window as any).nluxSimulator = nluxSimulator;
+  window.nluxSimulator = nluxSimulator;
 
   const checkInputInterval = setInterval(() => {
     const nluxAiChatPromptInput = document.querySelector(
@@ -118,12 +125,12 @@ if (typeof window !== "undefined" && !window.nluxSimulator) {
   }, 200);
 
   setTimeout(() => {
-    (window as any).nluxSimulator?.enableSimulator();
-    (window as any).nluxSimulator?.setPrompt(
+    window.nluxSimulator?.enableSimulator();
+    window.nluxSimulator?.setPrompt(
       "Do you think we could have a thoughtful debate about physics with ChatGPT?"
     );
   }, 1000);
 }
 
 // Export the nluxSimulator for use in other modules if needed
-export const nluxSimulator = (window as any).nluxSimulator;
+export const nluxSimulator = window.nluxSimulator;
