@@ -45,7 +45,9 @@ export const ContactUs = () => {
   );
 };
 
-export default ContactUs;
+export default function Page() {
+  return <ContactUs />;
+}
 
 const StyledContactForm = styled.div`
   width: 400px;
