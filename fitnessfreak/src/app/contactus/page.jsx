@@ -5,7 +5,7 @@ import styled from "styled-components";
 import "./Contactus.css";
 import { ToastContainer, toast } from "react-toastify";
 
-export const ContactUs = () => {
+const ContactUs = () => {
   const form = useRef();
 
   const sendEmail = (e) => {
@@ -45,9 +45,7 @@ export const ContactUs = () => {
   );
 };
 
-export default function Page() {
-  return <ContactUs />;
-}
+export default ContactUs;
 
 const StyledContactForm = styled.div`
   width: 400px;
