@@ -32,22 +32,27 @@ import logo9 from "@/assets/pdf/nutrition/images.jpg";
 // import pdf1 from "@/assets/pdf/kehe103.pdf";
 const Nutrition = () => {
   const myref = useRef(null);
-  const [have, sethave] = useState(
-    JSON.parse(localStorage.getItem("had")) || [
-      {
-        name: "",
-        calories: null,
-        serving_size_g: null,
-        fat_total_g: null,
-        fat_saturated_g: null,
-        protein_g: null,
-        cholesterol_mg: null,
-        carbohydrates_total_g: null,
-        fiber_g: null,
-        sugar_g: null,
-      },
-    ]
-  );
+  const [have, setHave] = useState([
+    {
+      name: "",
+      calories: null,
+      serving_size_g: null,
+      fat_total_g: null,
+      fat_saturated_g: null,
+      protein_g: null,
+      cholesterol_mg: null,
+      carbohydrates_total_g: null,
+      fiber_g: null,
+      sugar_g: null,
+    },
+  ]);
+
+  useEffect(() => {
+    const storedHad = localStorage.getItem("had");
+    if (storedHad) {
+      setHave(JSON.parse(storedHad));
+    }
+  }, []);
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -92,15 +97,12 @@ const Nutrition = () => {
         have.pop();
       }
 
-      // data[0].name = data[0].name.toUpperCase();
-      console.log(data.name);
-      sethave([...data, ...have]);
+      const updatedHave = [...data, ...have];
+      setHave(updatedHave);
 
-      if (have.length != 0) {
-        localStorage.setItem("had", JSON.stringify(have));
-      }
+      localStorage.setItem("had", JSON.stringify(updatedHave));
 
-      console.log(have);
+      console.log(updatedHave);
     } catch (error) {
       console.log("here is the error" + error);
     }
