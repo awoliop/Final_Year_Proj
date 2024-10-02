@@ -18,6 +18,8 @@ import { parse } from "path";
 
 interface AuthPopupProps {
   setShowpopup: React.Dispatch<React.SetStateAction<boolean>>;
+  loginformData: any;
+  setLoginFormData: any;
 }
 
 interface SignupFormData {
