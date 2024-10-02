@@ -9,6 +9,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { TimePicker } from "@mui/x-date-pickers";
 import { toast } from "react-toastify";
+import { TimeValidationError } from "@mui/x-date-pickers";
 
 interface CaloriIntakePopupProps {
   setShowCalorieIntakePopup: React.Dispatch<React.SetStateAction<boolean>>;
@@ -123,8 +124,10 @@ const CalorieIntakePopup: React.FC<CaloriIntakePopupProps> = ({ setShowCalorieIn
     }
   };
 
-  const selectedDay = (val: Dayjs) => {
-    setDate(val);
+  const selectedDay = (val: Dayjs | null) => {
+    if (val) {
+      setDate(val);
+    }
   };
 
   useEffect(() => {
@@ -146,7 +149,7 @@ const CalorieIntakePopup: React.FC<CaloriIntakePopupProps> = ({ setShowCalorieIn
           <DatePicker
             label="Basic Example"
             value={date}
-            onChange={(newValue: Dayjs) => {
+            onChange={(newValue: Dayjs | null) => {
               selectedDay(newValue);
             }}
           />
@@ -175,8 +178,13 @@ const CalorieIntakePopup: React.FC<CaloriIntakePopupProps> = ({ setShowCalorieIn
             <TimePicker
               label="controlled picker"
               value={time}
-              onChange={(newValue: Dayjs) => {
-                setTime(newValue);
+              onChange={(
+                newValue: Dayjs | null,
+                context: { validationError: TimeValidationError | null }
+              ) => {
+                if (newValue) {
+                  setTime(newValue);
+                }
               }}
             />
           </LocalizationProvider>
