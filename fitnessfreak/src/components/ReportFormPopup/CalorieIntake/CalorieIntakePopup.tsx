@@ -17,8 +17,8 @@ interface CaloriIntakePopupProps {
 const CalorieIntakePopup: React.FC<CaloriIntakePopupProps> = ({ setShowCalorieIntakePopup }) => {
   const color = "#ffc20e";
 
-  const [date, setDate] = React.useState<Dayjs | string>(dayjs());
-  const [time, setTime] = React.useState<Dayjs | string>(dayjs());
+  const [date, setDate] = React.useState<Dayjs>(dayjs());
+  const [time, setTime] = React.useState<Dayjs>(dayjs());
 
   const [calorieInake, setCalorieIntake] = React.useState<any>({
     item: "",
