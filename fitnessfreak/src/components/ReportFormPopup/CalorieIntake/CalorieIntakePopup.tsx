@@ -123,7 +123,7 @@ const CalorieIntakePopup: React.FC<CaloriIntakePopupProps> = ({ setShowCalorieIn
     }
   };
 
-  const selectedDay = (val: Dayjs | null) => {
+  const selectedDay = (val: Dayjs) => {
     setDate(val);
   };
 
