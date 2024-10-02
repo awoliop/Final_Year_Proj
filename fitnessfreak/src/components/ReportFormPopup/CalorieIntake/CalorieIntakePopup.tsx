@@ -146,7 +146,7 @@ const CalorieIntakePopup: React.FC<CaloriIntakePopupProps> = ({ setShowCalorieIn
           <DatePicker
             label="Basic Example"
             value={date}
-            onChange={(newValue: Dayjs | null) => {
+            onChange={(newValue: Dayjs) => {
               selectedDay(newValue);
             }}
           />
@@ -175,7 +175,7 @@ const CalorieIntakePopup: React.FC<CaloriIntakePopupProps> = ({ setShowCalorieIn
             <TimePicker
               label="controlled picker"
               value={time}
-              onChange={(newValue: Dayjs | null) => {
+              onChange={(newValue: Dayjs) => {
                 setTime(newValue);
               }}
             />
